@@ -11,6 +11,7 @@
   <h1>Start Your code Here</h1>
   <h1>CUTOMER SUPPORT SYSTEM</h1>
   <h1>Mahiara DESIGNS</h1>
+  <h2>Query Page</h2>
   </body>
 
 </html>
