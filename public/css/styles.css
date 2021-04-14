@@ -1,0 +1,419 @@
+:root {
+  --dark_yellow: #a7852c;
+}
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+a {
+  color: grey;
+  text-decoration: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+/* Checkmark And Radio Button CSS  */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 0.9rem;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+}
+.radio .checkmark {
+  border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: var(--dark_yellow);
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+.checkbox.container .checkmark:after {
+  left: 5px;
+  top: 0px;
+  width: 3px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.radio.container .checkmark:after {
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--dark_yellow);
+}
+.radio.container input:checked ~ .checkmark {
+  background-color: white;
+  border: 1px solid var(--dark_yellow);
+}
+.radio .checkmark {
+  height: 18px;
+  width: 18px;
+}
+/* Checkmark And Radio Button CSS  ENDS*/
+
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+.logo {
+  font-family: "Shippori Mincho B1", serif;
+  font-weight: 500;
+  margin: 0 0.5rem;
+}
+.error {
+  font-size: 0.9rem;
+  text-align: left;
+  color: #f44336;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+/* NAVBAR CSS  */
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  background: #efe9da;
+  padding: 1rem 10rem;
+}
+.searchbox {
+  width: 50%;
+  position: relative;
+}
+.searchbox i {
+  position: absolute;
+  color: #a5a3ad;
+  font-size: 1rem;
+  top: 0.5rem;
+  left: 1rem;
+}
+.searchbox input {
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  width: 95%;
+  margin: 0 0.5rem;
+}
+.buttonbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.buttonbox button {
+  padding: 0.5rem;
+  border: none;
+  font-size: 0.9rem;
+  margin: 0 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.buttonbox button i {
+  font-size: 1.1rem;
+  margin-right: 0.3rem;
+}
+.primary-btn {
+  background: black;
+  color: white;
+}
+.sec-btn {
+  background: none;
+  color: black;
+}
+/* NAVBAR CSS  ENDS*/
+
+/* TOPLINK CSS  */
+.toplinks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.9rem 6rem;
+  -webkit-box-shadow: 0px 1px 2px #86868699;
+  box-shadow: 0px 1px 2px #86868699;
+}
+.toplinks a {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0.5rem;
+  white-space: nowrap;
+}
+/* TOPLINK CSS  ENDS*/
+
+/* QUERY SECTION  */
+
+.query {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 2px solid #b5b4b4;
+  padding: 2rem;
+  margin: 3rem 10rem;
+  border-radius: 1rem;
+}
+.imgbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 3rem;
+  width: 50%;
+}
+.imgbox img {
+  width: 100%;
+  max-width: 20rem;
+}
+.formbox {
+  width: 50%;
+  min-width: 30rem;
+  padding: 2rem;
+  border: 2px solid #cac8c8;
+  border-radius: 1rem;
+}
+.formbox h3 {
+  text-align: center;
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  color: var(--dark_yellow);
+}
+.formbox .eachline {
+  width: 100%;
+  margin: 0.7rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.formbox input,
+.formbox textarea {
+  padding: 0.7rem;
+  border: 1px solid grey;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  color: #2f2e2e;
+  width: 100%;
+}
+.formbox .full_input {
+  width: 100%;
+}
+.formbox .half_input {
+  width: calc(50% - 0.5rem);
+}
+.formbox .half_input.left {
+  margin-right: 0.7rem;
+}
+.formbox textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+.formbox .primary-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--dark_yellow);
+  color: white;
+  border: none;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+/* QUERY SECTION  ENDS*/
+
+
+
+
+/* SECTION 04 CSS FOOTER*/
+footer {
+  padding: 0rem 10rem 2rem;
+  margin: 2rem 0;
+}
+footer .flinks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  color: #fefefe;
+  margin-bottom: 0.5rem;
+  border-top: 1px solid darkgrey;
+  padding-top: 1.5rem;
+}
+.flinks a {
+  font-size: 0.8rem;
+  color: var(--dark_yellow);
+  font-weight: 500;
+}
+footer .copyright {
+  text-align: center;
+  color: grey;
+  font-size: 0.8rem;
+}
+/* SECTION 04 CSS ENDS*/
+
+/* Media QUERY*/
+@media only screen and (max-width: 1200px) {
+  nav {
+    padding: 1rem 5rem;
+  }
+  .query {
+    margin: 3rem 5rem;
+  }
+  .toplinks {
+    padding: 0.9rem 1rem;
+  }
+  .toplinks a {
+    font-size: 0.8rem;
+    margin: 0 0.3rem;
+  }
+  footer {
+    padding: 0rem 5rem 2rem;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  nav {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  nav .searchbox {
+    margin: 1rem 0;
+  }
+  .toplinks {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .toplinks a {
+    margin: 0.5rem;
+  }
+  .query {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .imgbox {
+    width: 100%;
+  }
+  footer {
+    padding: 0rem 3rem 2rem;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .query {
+    margin: 3rem 2rem;
+  }
+  .formbox {
+    min-width: 26rem;
+    max-width: 100%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  nav {
+    padding: 1rem;
+  }
+  .query {
+    margin: 3rem 1rem;
+    padding: 1rem;
+  }
+  .formbox {
+    width: 100%;
+    min-width: auto;
+    padding: 0;
+    border: none;
+  }
+  nav .searchbox {
+    width: 100%;
+  }
+  .buttonbox {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .buttonbox button {
+    margin: 0.5rem;
+  }
+  footer {
+    padding: 0rem 2rem 2rem;
+  }
+}

@@ -1,0 +1,5 @@
+  {{-- 
+  Script Linkings
+   --}}
+  </body>
+</html>
