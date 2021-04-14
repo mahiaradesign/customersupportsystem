@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@include('includes.htmlhead')
+@include('includes.navbar')
 
-        <title>Mahiara designs</title>
-  </head>
+<div class="redirect_link">
+    <a href="/query">Move to Query Page</a>
+</div>
 
-  <body>
-  <h1>Start Your code Here</h1>
-  </body>
-
-</html>
+@include('includes.footer')
+@include('includes.htmlend')

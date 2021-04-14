@@ -204,8 +204,23 @@ nav {
 }
 /* TOPLINK CSS  ENDS*/
 
-/* QUERY SECTION  */
 
+.redirect_link
+{
+  padding: 5rem 10rem;
+  text-align: center;
+}
+.redirect_link a
+{
+  padding: 0.5rem 2rem;
+  background: #efe9da;
+  color: #5d5b5b;
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+}
+
+
+/* QUERY SECTION  */
 .query {
   display: -webkit-box;
   display: -ms-flexbox;
