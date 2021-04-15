@@ -6,7 +6,8 @@
         </div>
         <div class="formbox">
             <h3>SEND US A MAIL</h3>
-            <form action="query" method="POST" name="myForm">
+            <form action="{{url('ticketSubmit')}}" method="POST" name="myForm">
+                @csrf
                 <div class="eachline">
                     <div class="eachinputbox half_input left">
                         <input type="text" class="" name="first_name" placeholder="First Name">

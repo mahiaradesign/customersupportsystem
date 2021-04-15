@@ -24,6 +24,8 @@ Route::get('/', function () {
 Route::get('/query', function () {
     return view('query');
 });
+Route::post('/ticketSubmit','App\Http\Controllers\TicketsController@save');
+
 Route::get('/executive_login', function () {
     return view('executive_login');
 });
