@@ -16,6 +16,10 @@
       href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <title>Mahiara</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
