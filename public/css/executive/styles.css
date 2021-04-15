@@ -30,9 +30,10 @@ input:-webkit-autofill:active {
   display: block;
   position: relative;
   padding-left: 25px;
-  margin-bottom: 0.9rem;
+  margin: 0.5rem 0 0.2rem;
   cursor: pointer;
-  font-size: 22px;
+  color: #7b7979;
+  font-size: 0.8rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -102,146 +103,6 @@ input:-webkit-autofill:active {
 body {
   width: 100%;
   min-height: 100vh;
-}
-.logo {
-  font-family: "Shippori Mincho B1", serif;
-  font-weight: 500;
-  margin: 0 0.5rem;
-}
-.error {
-  font-size: 0.9rem;
-  text-align: left;
-  color: #f44336;
-  font-weight: 500;
-  line-height: 1.7;
-}
-
-/* NAVBAR CSS  */
-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  background: #efe9da;
-  padding: 1rem 10rem;
-}
-.searchbox {
-  width: 50%;
-  position: relative;
-}
-.searchbox i {
-  position: absolute;
-  color: #a5a3ad;
-  font-size: 1rem;
-  top: 0.5rem;
-  left: 1rem;
-}
-.searchbox input {
-  padding: 0.5rem 0.5rem 0.5rem 2rem;
-  border-radius: 1rem;
-  border: none;
-  outline: none;
-  width: 95%;
-  margin: 0 0.5rem;
-}
-.buttonbox {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.buttonbox button {
-  padding: 0.5rem;
-  border: none;
-  font-size: 0.9rem;
-  margin: 0 0.5rem;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.buttonbox button i {
-  font-size: 1.1rem;
-  margin-right: 0.3rem;
-}
-.primary-btn {
-  background: black;
-  color: white;
-}
-.sec-btn {
-  background: none;
-  color: black;
-}
-/* NAVBAR CSS  ENDS*/
-
-/* TOPLINK CSS  */
-.toplinks {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  padding: 0.9rem 6rem;
-  -webkit-box-shadow: 0px 1px 2px #86868699;
-  box-shadow: 0px 1px 2px #86868699;
-}
-.toplinks a {
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0 0.5rem;
-  white-space: nowrap;
-}
-/* TOPLINK CSS  ENDS*/
-
-
-.redirect_link
-{
-  padding: 5rem 10rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.redirect_link a
-{
-  margin: 0.5rem;
-  width: 20rem;
-  padding: 0.5rem 2rem;
-  background: #efe9da;
-  color: #5d5b5b;
-  font-size: 1.2rem;
-  border-radius: 0.2rem;
-}
-
-
-/* QUERY SECTION  */
-.query {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  border: 2px solid #b5b4b4;
-  padding: 2rem;
-  margin: 3rem 10rem;
-  border-radius: 1rem;
-}
-.imgbox {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -251,12 +112,51 @@ nav {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background: #eeeeee;
+}
+.error {
+  font-size: 0.9rem;
+  text-align: left;
+  color: #f44336;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+/* Main Arae SECTION  */
+.mainarea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 3px solid #d6d3d3;
+  padding: 2rem;
+  margin: 3rem 10rem;
+  border-radius: 1rem;
+  background-color: white;
+}
+.imgbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   padding: 3rem;
   width: 50%;
 }
 .imgbox img {
   width: 100%;
-  max-width: 20rem;
+  max-width: 25rem;
+  -webkit-animation: animation 2s ease-in-out infinite;
+          animation: animation 2s ease-in-out infinite;
 }
 .formbox {
   width: 50%;
@@ -264,6 +164,16 @@ nav {
   padding: 2rem;
   border: 2px solid #cac8c8;
   border-radius: 1rem;
+}
+.eachinputbox {
+  position: relative;
+}
+.eachinputbox i {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.7rem;
+  font-size: 1.2rem;
+  color: #696868;
 }
 .formbox h3 {
   text-align: center;
@@ -278,11 +188,14 @@ nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 .formbox input,
 .formbox textarea {
-  padding: 0.7rem;
+  padding: 0.7rem 0.7rem 0.7rem 2rem;
   border: 1px solid grey;
   border-radius: 0.4rem;
   font-size: 1.1rem;
@@ -312,97 +225,57 @@ nav {
   border-radius: 0.5rem;
   cursor: pointer;
 }
-.mail{
-  display: block;
+
+@-webkit-keyframes animation {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes animation {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 /* QUERY SECTION  ENDS*/
 
-
-
-
-/* SECTION 04 CSS FOOTER*/
-footer {
-  padding: 0rem 10rem 2rem;
-  margin: 2rem 0;
-}
-footer .flinks {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-  -ms-flex-pack: space-evenly;
-  justify-content: space-evenly;
-  color: #fefefe;
-  margin-bottom: 0.5rem;
-  border-top: 1px solid darkgrey;
-  padding-top: 1.5rem;
-}
-.flinks a {
-  font-size: 0.8rem;
-  color: var(--dark_yellow);
-  font-weight: 500;
-}
-footer .copyright {
-  text-align: center;
-  color: grey;
-  font-size: 0.8rem;
-}
-/* SECTION 04 CSS ENDS*/
-
 /* Media QUERY*/
 @media only screen and (max-width: 1200px) {
-  nav {
-    padding: 1rem 5rem;
-  }
-  .query {
+  .mainarea {
     margin: 3rem 5rem;
-  }
-  .toplinks {
-    padding: 0.9rem 1rem;
-  }
-  .toplinks a {
-    font-size: 0.8rem;
-    margin: 0 0.3rem;
-  }
-  footer {
-    padding: 0rem 5rem 2rem;
   }
 }
 @media only screen and (max-width: 1000px) {
-  nav {
+  .mainarea {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
   }
-  nav .searchbox {
-    margin: 1rem 0;
-  }
-  .toplinks {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-  .toplinks a {
-    margin: 0.5rem;
-  }
-  .query {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
   .imgbox {
     width: 100%;
   }
-  footer {
-    padding: 0rem 3rem 2rem;
-  }
 }
 @media only screen and (max-width: 900px) {
-  .query {
+  .mainarea {
     margin: 3rem 2rem;
   }
   .formbox {
@@ -411,10 +284,7 @@ footer .copyright {
   }
 }
 @media only screen and (max-width: 500px) {
-  nav {
-    padding: 1rem;
-  }
-  .query {
+  .mainarea {
     margin: 3rem 1rem;
     padding: 1rem;
   }
@@ -423,21 +293,5 @@ footer .copyright {
     min-width: auto;
     padding: 0;
     border: none;
-  }
-  nav .searchbox {
-    width: 100%;
-  }
-  .buttonbox {
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
-  .buttonbox button {
-    margin: 0.5rem;
-  }
-  footer {
-    padding: 0rem 2rem 2rem;
   }
 }

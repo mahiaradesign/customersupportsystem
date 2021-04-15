@@ -24,3 +24,6 @@ Route::get('/', function () {
 Route::get('/query', function () {
     return view('query');
 });
+Route::get('/executive_login', function () {
+    return view('executive_login');
+});
