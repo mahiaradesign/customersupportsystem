@@ -273,6 +273,7 @@ nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+
 }
 .formbox input,
 .formbox textarea {
@@ -305,6 +306,9 @@ nav {
   font-size: 1.25rem;
   border-radius: 0.5rem;
   cursor: pointer;
+}
+.mail{
+  display: block;
 }
 /* QUERY SECTION  ENDS*/
 

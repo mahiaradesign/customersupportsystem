@@ -8,14 +8,26 @@
             <h3>SEND US A MAIL</h3>
             <form action="query" method="POST" name="myForm">
                 <div class="eachline">
-                    <input type="text" class="half_input left" name="first_name" placeholder="First Name">
-                    <input type="text" class="half_input right" name="last_name" placeholder="Last Name">
+                    <div class="eachinputbox half_input left">
+                        <input type="text" class="" name="first_name" placeholder="First Name">
+                        <span class="error"  name="f_error"></span>
+                    </div>
+                    <div class="eachinputbox half_input right">
+                        <input type="text" class="" name="last_name" placeholder="Last Name">
+                        <span  name="l_error" class="error"></span>
+                    </div>
+                </div>
+                <div class="eachline mail">
+                    <div class="eachinputbox full_input">
+                        <input type="email" class="full_input" name="email" placeholder="Email">
+                        <span class="error" name="e_error"></span>
+                    </div>
                 </div>
                 <div class="eachline">
-                    <input type="email" class="full_input" name="email" placeholder="Email">
-                </div>
-                <div class="eachline">
-                   <textarea name="message" rows="7" placeholder="Enter your message"></textarea>
+                    <div class="eachinputbox full_input">
+                        <textarea name="message" rows="7" placeholder="Enter your message"></textarea>
+                        <span class="error" name="m_error"></span>
+                    </div>
                 </div>
                 <button type="submit" name="querysubmit" class="primary-btn">SEND MESSAGE</button>
             </form>
