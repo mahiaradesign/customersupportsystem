@@ -6,7 +6,7 @@
         </div>
         <div class="formbox">
             <h3>SEND US A MAIL</h3>
-            <form action="query" method="POST">
+            <form action="query" method="POST" name="myForm">
                 <div class="eachline">
                     <input type="text" class="half_input left" name="first_name" placeholder="First Name">
                     <input type="text" class="half_input right" name="last_name" placeholder="Last Name">
@@ -17,7 +17,7 @@
                 <div class="eachline">
                    <textarea name="message" rows="7" placeholder="Enter your message"></textarea>
                 </div>
-                <button  type="submit" name="querysubmit" class="primary-btn">SEND MESSAGE</button>
+                <button type="submit" name="querysubmit" class="primary-btn">SEND MESSAGE</button>
             </form>
         </div>
     </section>
