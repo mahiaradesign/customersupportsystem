@@ -61,12 +61,13 @@
                   @enderror
                 </div>
                 <label class="container checkbox">Remember Me
-                  <input type="checkbox" checked>
+                  <input type="checkbox" name="remember_me" value="1">
                   <span class="checkmark"></span>
                 </label>
-              <button type="submit" class="primary-btn">
-                {{ __('SECURE LOGIN') }}
-              </button>
+              
+                <button type="submit" class="primary-btn">
+                  {{ __('SECURE LOGIN') }}
+                </button>
             </form>
         </div>
         <script src="/js/executive/executive_login.js"></script>

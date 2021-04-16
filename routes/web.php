@@ -27,10 +27,6 @@ Route::get('/query', 'App\Http\Controllers\TicketsController@index');
 // to submit the query
 Route::post('/ticketSubmit','App\Http\Controllers\TicketsController@save');
 
-// to register the executive
-Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@register');
-Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@store');
-
 // for executive login and logout
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
 Route::post('/login', 'App\Http\Controllers\Auth\LoginController@authenticate');

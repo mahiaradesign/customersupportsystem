@@ -13,7 +13,6 @@ class TicketsController extends Controller
     }
 
     public function save(Request $request){
-        // print_r($request->all());
         $data = new tickets;
         $data->first_name = $request->first_name;
         $data->last_name = $request->last_name;

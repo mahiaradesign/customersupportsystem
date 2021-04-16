@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -23,8 +24,14 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        $remember_me  = ( !empty( $request->remember_me ) )? TRUE : FALSE;
+
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('home');
+          $user = User::where(["email" => $credentials['email']])->first();
+            
+          Auth::login($user, $remember_me);
+
+          return redirect()->intended('home');
         }
 
         return redirect('login')->with('error', 'Oops! You have entered invalid credentials');
