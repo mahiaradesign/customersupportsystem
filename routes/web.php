@@ -21,11 +21,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/query', function () {
-    return view('query');
-});
+// to visit the query page
+Route::get('/query', 'App\Http\Controllers\TicketsController@index');
+
+// to submit the query
 Route::post('/ticketSubmit','App\Http\Controllers\TicketsController@save');
 
-Route::get('/executive_login', function () {
-    return view('executive_login');
+// to register the executive
+Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@register');
+Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@store');
+
+// for executive login and logout
+Route::get('login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::post('login', 'App\Http\Controllers\Auth\LoginController@authenticate');
+Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+// moving to the home page of the executive 
+Route::get('home', function(){
+    return view('home');
 });

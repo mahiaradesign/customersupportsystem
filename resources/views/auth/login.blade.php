@@ -26,26 +26,41 @@
         </div>
         <div class="formbox">
             <h3><i class="fa fa-shield" aria-hidden="true"></i> EXECUTIVE LOGIN</h3>
-            <form action="/executive_login" method="POST" name="myForm">
+            @if(session()->has('error'))
+              <div class="alert alert-danger">
+                  {{ session()->get('error') }}
+              </div>
+            @endif
+            <form action="{{ route('login') }}" method="POST" name="myForm">
+              @csrf
               <div class="eachline">
                 <div class="eachinputbox full_input">
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    <input type="text" name="username" placeholder="Username">
-                    <span class="error" name="user_error"></span>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Username" required autocomplete="email" autofocus>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
               </div>
               <div class="eachline">
                 <div class="eachinputbox full_input">
                   <i class="fa fa-lock" aria-hidden="true"></i>
-                    <input type="password" name="password" placeholder="Password">
-                    <span class="error" name="pass_error"></span>
+                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
+                  @error('password')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                 </div>
                 <label class="container checkbox">Remember Me
                   <input type="checkbox" checked>
                   <span class="checkmark"></span>
                 </label>
-              </div>
-                <button  type="submit" name="executive_login_submit" class="primary-btn">SECURE LOGIN</button>
+              <button type="submit" class="primary-btn">
+                {{ __('SECURE LOGIN') }}
+              </button>
             </form>
         </div>
         <script src="/js/executive/executive_login.js"></script>

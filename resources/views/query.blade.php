@@ -6,6 +6,15 @@
         </div>
         <div class="formbox">
             <h3>SEND US A MAIL</h3>
+
+            {{-- Some styling required (optional) --}}
+            @if($message=Session::get('success'))
+                <h5>{{ $message }}</h5>
+            @endif
+            @if($message=Session::get('fail'))
+                <h5>{{ $message }}</h5>
+            @endif
+
             <form action="{{url('ticketSubmit')}}" method="POST" name="myForm">
                 @csrf
                 <div class="eachline">
