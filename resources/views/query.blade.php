@@ -9,10 +9,16 @@
 
             {{-- Some styling required (optional) --}}
             @if($message=Session::get('success'))
-                <h5>{{ $message }}</h5>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
             @if($message=Session::get('fail'))
-                <h5>{{ $message }}</h5>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
 
             <form action="{{url('ticketSubmit')}}" method="POST" name="myForm">
@@ -44,5 +50,6 @@
         </div>
     </section>
     <script src="/js/query.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 @include('includes.footer')
 @include('includes.htmlend')

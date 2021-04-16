@@ -16,6 +16,8 @@
       href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500&display=swap"
       rel="stylesheet"
     />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <title>Mahiara Executive Login</title>
     <link rel="stylesheet" href="css/executive/styles.css" />
   </head>
@@ -26,11 +28,15 @@
         </div>
         <div class="formbox">
             <h3><i class="fa fa-shield" aria-hidden="true"></i> EXECUTIVE LOGIN</h3>
+            
+            {{-- styling required here --}}
             @if(session()->has('error'))
-              <div class="alert alert-danger">
-                  {{ session()->get('error') }}
-              </div>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>{{ session()->get('error') }}</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             @endif
+
             <form action="{{ route('login') }}" method="POST" name="myForm">
               @csrf
               <div class="eachline">
@@ -64,6 +70,7 @@
             </form>
         </div>
         <script src="/js/executive/executive_login.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </section>
   </body>
 </html>
