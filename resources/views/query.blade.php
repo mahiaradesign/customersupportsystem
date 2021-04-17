@@ -24,6 +24,12 @@
             <form action="{{url('ticketSubmit')}}" method="POST" name="myForm">
                 @csrf
                 <div class="eachline">
+                    <p>Ticket ID</p>
+                    <div class="eachinputbox full_input">
+                        <input type="number" class="full_input" name="ticket_id" value={{ $ticket_id }} readonly>
+                    </div>
+                </div>
+                <div class="eachline">
                     <div class="eachinputbox half_input left">
                         <input type="text" class="" name="first_name" placeholder="First Name">
                         <span class="error"  name="f_error"></span>
