@@ -34,3 +34,7 @@ Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name(
 
 // moving to the home page of the executive 
 Route::get('/home','App\Http\Controllers\HomeController@index' );
+
+// ROUTE FOR SENDING MAIL {use it to send mail from the executive to the author with ticket id = ticket_id} 
+// Use ticket_id from table 
+Route:: get('sendEmail/{ticket_id}','App\Http\Controllers\ResponsesController@sendEmail');
