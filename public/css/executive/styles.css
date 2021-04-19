@@ -324,9 +324,12 @@ tr th,tr td
 {
   white-space: nowrap;
   vertical-align: middle;
+  text-align: center;
 }
 tr td:nth-child(3) {
   white-space: normal;
+  max-width: 15rem;
+  text-align: left;
 }
 td button,td a
 {
@@ -456,12 +459,26 @@ td button,td a
   .topline
   {
     margin: 2rem 2rem 0;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
   }
   .task-box
   {
     margin: 1rem 2rem 2rem;
+    padding: 1rem;
+    overflow-x: scroll;
+  }
+  .task-box.active
+  {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+  }
+  .query-box, .reply-box {
+    border: none;
+  }
+  .stats-box
+  {
+    margin-bottom: 2rem;
   }
   .formbox {
     min-width: 26rem;
@@ -469,10 +486,11 @@ td button,td a
   }
   tr th,tr td
 {
-  white-space:normal
+  white-space:normal;
+  min-width: 7rem;
 }
-td button, td a {
-  width:auto;
+tr td:nth-child(3) {
+  min-width: 15rem;
 }
 }
 @media only screen and (max-width: 500px) {
@@ -489,6 +507,17 @@ td button, td a {
     margin: 2rem 1rem 0;
     padding: 1rem;
   }
+  .main-title {
+    font-size: 2.2rem;
+  }
+  .mess-eachline {
+    flex-direction: column;
+    margin: 0.7rem 0;
+}
+.query-mess-box {
+  width: 100%;
+  margin: 0.4rem 0;
+}
   .formbox {
     width: 100%;
     min-width: auto;
