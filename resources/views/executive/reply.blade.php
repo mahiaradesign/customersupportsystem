@@ -39,7 +39,7 @@
               <p class="value">abc@def.com</p>
             </div>
             <div class="mess-eachline">
-              <p class="name">Message</p>
+              <p class="name">Message with Ticket_Id #{{ $id }}</p>
               <div class="query-mess-box">
                 <p>Lorem ipsum dolor sit 
                   amet consectetur adipisicing elit. Illo quos maxime 
@@ -60,7 +60,8 @@
           </div>
           <div class="reply-box">
             <h3>Your Message</h3>
-            <form action="">
+            <form method="POST" action="{{ route('executive.sendEmail.ticket_id', ['ticket_id' => $id ])}}">
+            @csrf
             <div class="mess-eachline">
               <p class="name">Name</p>
               <p class="value">Executive Name</p>

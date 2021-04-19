@@ -9,7 +9,10 @@
 <body>
     {{-- enter the message body by fetching itfrom the backend --}}
     <h3> Response From Mahiara </h3>
-    <h4>{{ $mess }}</h4>
+    <h4>Hello, {{$first_name}} {{$last_name}}</h4>
+    <h4>Your Query has been received and our customer execuitive will contact you soon. </h4>
+    <p>{{ $mess }}</p>
+    <h4> has been received and our customer execuitive will contact you soon. </h4>
     <p>This is system generated mail. Do not Reply</p>
 </body>
 </html>

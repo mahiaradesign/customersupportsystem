@@ -10,18 +10,20 @@ use App\Models\tickets;
 class ResponsesController extends Controller
 {
     //
+    public function reply($id) {
+        
+        return view('executive.reply')->with(['id'=>$id]);
+    }
 
-    public function sendEmail($id, Request $request){
+    public function sendEmail(Request $request, $ticket_id){
 
-        $to_user=tickets::where('ticket_id',$id)->first();
+        $to_user=tickets::where('ticket_id',$ticket_id)->first();
 
-        $data=[
-            'message' =>$request->message,
-            'exec_user' =>$request->name,
-            'exec_email'=>$request->email
-        ];
+        // $data=[
+        //     'reply_message' =>$request->reply_message,
+        // ];
 
-        Mail::to($to_user->email)->send(new ResponseMail($data));
+        Mail::to($to_user->email)->send(new ResponseMail($request->reply_message, $ticket_id));
         return "Email Sent to ".$to_user->email;
     }
 }

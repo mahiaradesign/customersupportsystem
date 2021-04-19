@@ -16,11 +16,11 @@ class ResponseMail extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $id)
     {
         //fetching the content from form to send the mail to the user with query
-        $this->response_mail_data = $data;
-
+        $this->mess = $data;
+        $this->ticket_id = $id;
     }
 
     /**
@@ -31,6 +31,6 @@ class ResponseMail extends Mailable
     public function build()
     {
         // sender user email ==> mahiara admin email id same email must be entered in the .env file as well
-        return $this->from('noreply.mahiara@gmail.com', 'Mahiara')->subject('Response From Mahiara for your Query')->view('mail.response-email',['response_data',$this->response_mail_data]);
+        return $this->from('enter_your_email@gmail.com', 'Mahiara Support')->subject('Ticket #'.$this->ticket_id)->view('mail.response-email')->with('mess',$this->mess);
     }
 }

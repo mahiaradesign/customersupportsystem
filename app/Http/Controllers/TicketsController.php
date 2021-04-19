@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\tickets;
+use App\Mail\QueryMail;
+use Illuminate\Support\Facades\Mail;
 
 class TicketsController extends Controller
 {
@@ -27,7 +29,10 @@ class TicketsController extends Controller
         $data->message = $request->message;
         $data->ticket_id = $request->ticket_id;
         $que = $data->save();
+
         if($que){
+
+            Mail::to($data->email)->send(new QueryMail($data));
             return back()->with('success', 'Thanks For Contacting us!!!');
         }
         return back()->with('fail', 'Something went Wrong!!!');

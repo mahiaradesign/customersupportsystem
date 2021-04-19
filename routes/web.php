@@ -37,13 +37,11 @@ Route::get('/home','App\Http\Controllers\HomeController@index' );
 
 // ROUTE FOR SENDING MAIL {use it to send mail from the executive to the author with ticket id = ticket_id} 
 // Use ticket_id from table 
-Route:: get('sendEmail/{ticket_id}','App\Http\Controllers\ResponsesController@sendEmail');
+Route:: post('/executive/sendEmail/{ticket_id}','App\Http\Controllers\ResponsesController@sendEmail')->name('executive.sendEmail.ticket_id');
 
 // Route for executive assigned tasks
 Route::get('/executive/assigned_tasks', function () {
     return view('/executive/assigned_tasks');
 });
 // Route for executive reply
-Route::get('/executive/reply', function () {
-    return view('/executive/reply');
-});
+Route::get('/executive/reply/{ticket_id}', 'App\Http\Controllers\ResponsesController@reply');
