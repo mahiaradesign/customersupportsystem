@@ -21,7 +21,7 @@
     <title>Mahiara Executive Login</title>
     <link rel="stylesheet" href="css/executive/styles.css" />
   </head>
-  <body>
+  <body class="flex">
     <section class="mainarea">
         <div class="imgbox">
             <img src="/images/hero_login.svg" alt="login-img">

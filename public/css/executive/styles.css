@@ -12,6 +12,10 @@ a {
   color: grey;
   text-decoration: none;
 }
+p
+{
+  margin-bottom: 0;
+}
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -103,6 +107,10 @@ input:-webkit-autofill:active {
 body {
   width: 100%;
   min-height: 100vh;
+  background: #eeeeee;
+}
+body.flex
+{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -112,7 +120,6 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: #eeeeee;
 }
 .error {
   font-size: 0.9rem;
@@ -256,11 +263,169 @@ body {
   }
 }
 /* QUERY SECTION  ENDS*/
+.topline
+{
+  display: flex;
+    justify-content: space-between;
+    margin: 2rem 10rem 0;
+    align-items: flex-end;
+}
+.main-title
+{
+  color: var(--dark_yellow);
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+.stats-box
+{
+  width: 15rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+.stats-box h4
+{
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--dark_yellow);
+  margin-bottom: 0.5rem;
+}
+.eachline
+{
+  display: flex;
+  justify-content: space-between;
+  margin: 0.2rem 0;
+}
+.eachline p
+{
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.eachline p.name
+{
+  color: #a2a0a0;
+}
+.eachline p.value
+{
+  color: #464545;
+}
+.eachline p.value i{
+  color: #ffc107;
+}
+.task-box
+{
+  border: 3px solid #d6d3d3;
+  padding: 2rem;
+  margin: 1rem 10rem 2rem;
+  border-radius: 1rem;
+  background-color: white;
+}
+tr th,tr td
+{
+  white-space: nowrap;
+  vertical-align: middle;
+}
+tr td:nth-child(3) {
+  white-space: normal;
+}
+td button,td a
+{
+  width: 7rem;
+}
 
+
+.back
+{
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    border: 1px solid #a09f9f;
+    color: grey;
+    background: white;
+    width: 5rem;
+    margin-bottom: 1rem;
+}
+.main-btn
+{
+  outline: 0;
+    padding: 0.7rem;
+    font-size: 1.2rem;
+    width: 20rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: var(--dark_yellow);
+    color: white;
+    margin-top: 2rem;
+}
+.reply-main-box
+{
+  display: flex;
+    justify-content: space-between;
+}
+.query-box,.reply-box
+{
+  border: 1px solid #9e9d9d;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.reply-main-box h3
+{
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--dark_yellow);
+}
+.query-box
+{
+  margin-right: 0.5rem;
+}
+.reply-box
+{
+  margin-left: 0.5rem;
+  background: #F3F3F3;
+}
+.mess-eachline
+{
+  display: flex;
+  margin: 0.5rem 0;
+}
+.mess-eachline .name
+{
+  width: 6rem;
+    color: #2b2b2b;
+    font-weight: 500;
+}
+.mess-eachline .value
+{
+  color: #6b6969;
+  font-weight: 500;
+}
+.query-mess-box
+{
+  width: calc(100% - 6rem);
+    height: 15rem;
+    border: 1px solid grey;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    overflow-y: scroll;
+    resize:none;
+}
+.reply-box button
+{
+  margin-top: 1rem;
+  width: 100%;
+}
 /* Media QUERY*/
 @media only screen and (max-width: 1200px) {
   .mainarea {
     margin: 3rem 5rem;
+  }
+  .topline
+  {
+    margin: 2rem 5rem 0;
+  }
+  .task-box
+  {
+    margin: 1rem 5rem 2rem;
   }
 }
 @media only screen and (max-width: 1000px) {
@@ -273,19 +438,55 @@ body {
   .imgbox {
     width: 100%;
   }
+  .reply-main-box
+  {
+    flex-direction: column;
+  }
+  .query-box {
+    margin: 0 0 0.5rem 0;
+}
+.reply-box {
+  margin: 0.5rem 0 0 0;
+}
 }
 @media only screen and (max-width: 900px) {
   .mainarea {
     margin: 3rem 2rem;
   }
+  .topline
+  {
+    margin: 2rem 2rem 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .task-box
+  {
+    margin: 1rem 2rem 2rem;
+  }
   .formbox {
     min-width: 26rem;
     max-width: 100%;
   }
+  tr th,tr td
+{
+  white-space:normal
+}
+td button, td a {
+  width:auto;
+}
 }
 @media only screen and (max-width: 500px) {
   .mainarea {
     margin: 3rem 1rem;
+    padding: 1rem;
+  }
+  .task-box
+  {
+    margin: 1rem 1rem 2rem;
+  }
+  .topline
+  {
+    margin: 2rem 1rem 0;
     padding: 1rem;
   }
   .formbox {
