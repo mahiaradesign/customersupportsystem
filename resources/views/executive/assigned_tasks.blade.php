@@ -27,9 +27,9 @@
               <th>TICKET ID</th>
               <th>Name</th>
               <th>Message</th>
-              <td>Date</td>
-              <td>Time</td>
-              <td>Respond</td>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Respond</th>
             </thead>
             <tbody>
               <tr>
@@ -91,5 +91,6 @@
             </tbody>
           </table>
         </div>
+        <script src="/js/executive/assigned_task.js"></script>
   </body>
 </html>
