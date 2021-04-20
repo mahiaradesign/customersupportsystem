@@ -43,3 +43,10 @@ Route::get('/executive/reply/{ticket_id}', 'App\Http\Controllers\ResponsesContro
 // ROUTE FOR SENDING MAIL {use it to send mail from the executive to the author with ticket id = ticket_id} 
 // Use ticket_id from table 
 Route:: post('/executive/sendEmail/{ticket_id}','App\Http\Controllers\ResponsesController@sendEmail')->name('executive.sendEmail.ticket_id');
+
+Route::get('/admin/add_executive', function () {
+    return view('/admin/add_executive');
+});
+Route::get('/admin/all_executive', function () {
+    return view('/admin/all_executive');
+});

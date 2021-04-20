@@ -31,6 +31,6 @@ class ResponseMail extends Mailable
     public function build()
     {
         // sender user email ==> mahiara admin email id same email must be entered in the .env file as well
-        return $this->from('enter_your_email@gmail.com', 'Mahiara Support')->subject('Ticket #'.$this->ticket_id)->view('mail.response-email')->with('mess',$this->mess);
+        return $this->from(env('MAIL_USERNAME', 'work.mahiara@gmail.com'), 'Mahiara Support')->subject('Ticket #'.$this->ticket_id)->view('mail.response-email')->with('mess',$this->mess);
     }
 }
