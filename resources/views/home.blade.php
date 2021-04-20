@@ -1,14 +1,19 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Page</title>
-</head>
-<body>
+@include('includes.htmlhead')
+@include('includes.navbar')
+    @if($email = Session::get('email'))
+    <?php 
+    echo "<script>alert('Welcome, $email ')</script>";
+    ?>
+    @endif
     <div class="container">
-        You are successfully logged in!
+        <h1>You are successfully logged in! </h1>
    </div>
-   <a href="{{route('logout')}}"><button class="btn btn-primary">Logout</button></a>
-</body>
-</html>
+   
+    <div class="redirect_link">
+        <a href="{{route('executive.assigned_tasks.id', ['id' => Session::get('id') ])}}">Assigned Tasks</a>
+
+        <a href="{{route('logout')}}">Logout</a>
+    </div>
+
+@include('includes.footer')
+@include('includes.htmlend')

@@ -24,7 +24,7 @@ Route::get('/', function () {
 // to visit the query page
 Route::get('/query', 'App\Http\Controllers\TicketsController@index');
 
-// to submit the query
+// to submit the query and mail the query
 Route::post('/ticketSubmit','App\Http\Controllers\TicketsController@save');
 
 // for executive login and logout
@@ -35,13 +35,11 @@ Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name(
 // moving to the home page of the executive 
 Route::get('/home','App\Http\Controllers\HomeController@index' );
 
+// Route for executive assigned tasks
+Route::get('/executive/assigned_tasks/{id}','App\Http\Controllers\HomeController@tasks' )->name('executive.assigned_tasks.id');
+// Route for executive reply
+Route::get('/executive/reply/{ticket_id}', 'App\Http\Controllers\ResponsesController@reply');
+
 // ROUTE FOR SENDING MAIL {use it to send mail from the executive to the author with ticket id = ticket_id} 
 // Use ticket_id from table 
 Route:: post('/executive/sendEmail/{ticket_id}','App\Http\Controllers\ResponsesController@sendEmail')->name('executive.sendEmail.ticket_id');
-
-// Route for executive assigned tasks
-Route::get('/executive/assigned_tasks', function () {
-    return view('/executive/assigned_tasks');
-});
-// Route for executive reply
-Route::get('/executive/reply/{ticket_id}', 'App\Http\Controllers\ResponsesController@reply');

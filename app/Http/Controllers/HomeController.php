@@ -17,4 +17,13 @@ class HomeController extends Controller
         }
         
     }
+    public function tasks(){
+        if(Auth::check()){
+            return view('/executive/assigned_tasks');
+        }
+        else{
+            return redirect('/login');
+        }
+        
+    }
 }

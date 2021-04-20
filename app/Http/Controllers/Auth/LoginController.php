@@ -30,8 +30,9 @@ class LoginController extends Controller
           $user = User::where(["email" => $credentials['email']])->first();
             
           Auth::login($user, $remember_me);
+          
 
-          return redirect()->intended('home');
+          return redirect('home')->with(['email'=> $credentials['email'],'id'=>$user->id]);
         }
 
         return redirect('login')->with('error', 'Oops! You have entered invalid credentials');
