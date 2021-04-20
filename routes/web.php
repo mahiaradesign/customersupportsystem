@@ -45,3 +45,9 @@ Route::get('/executive/assigned_tasks', function () {
 });
 // Route for executive reply
 Route::get('/executive/reply/{ticket_id}', 'App\Http\Controllers\ResponsesController@reply');
+Route::get('/admin/add_executive', function () {
+    return view('/admin/add_executive');
+});
+Route::get('/admin/all_executive', function () {
+    return view('/admin/all_executive');
+});

@@ -30,7 +30,7 @@ class QueryMail extends Mailable
      */
     public function build()
     {
-        return $this->from('enter_your_email@gmail.com', 'Mahiara Support')->subject('Ticket #'.$this->ticket_id)->view('mail.reply-email')->with([
+        return $this->from(env('MAIL_USERNAME', 'work.mahiara@gmail.com'), 'Mahiara Support')->subject('Ticket #'.$this->ticket_id)->view('mail.reply-email')->with([
             'first_name' => $this->reply_mail_data->first_name,
             'last_name' => $this->reply_mail_data->last_name,
             'email' => $this->reply_mail_data->email,

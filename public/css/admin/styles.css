@@ -1,0 +1,444 @@
+:root {
+  --dark_yellow: #a7852c;
+}
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+a {
+  color: grey;
+  text-decoration: none;
+}
+p
+{
+  margin-bottom: 0;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+*::-webkit-scrollbar {
+  height: 0.4rem;
+  width:0.4rem;
+}
+ 
+*::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+*::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+    outline: 1px solid slategrey;
+}
+/* Checkmark And Radio Button CSS  */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin: 0.5rem 0 0.2rem;
+  cursor: pointer;
+  color: #7b7979;
+  font-size: 0.8rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+}
+.radio .checkmark {
+  border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: var(--dark_yellow);
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+.checkbox.container .checkmark:after {
+  left: 5px;
+  top: 0px;
+  width: 3px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.radio.container .checkmark:after {
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--dark_yellow);
+}
+.radio.container input:checked ~ .checkmark {
+  background-color: white;
+  border: 1px solid var(--dark_yellow);
+}
+.radio .checkmark {
+  height: 18px;
+  width: 18px;
+}
+/* Checkmark And Radio Button CSS  ENDS*/
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: #eeeeee;
+}
+body.flex
+{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.error {
+  font-size: 0.9rem;
+  text-align: left;
+  color: #f44336;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+/* Main Arae SECTION  */
+.mainarea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 3px solid #d6d3d3;
+  padding: 2rem;
+  margin: 3rem 10rem;
+  border-radius: 1rem;
+  background-color: white;
+}
+.imgbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 3rem;
+  width: 50%;
+}
+.imgbox img {
+  width: 100%;
+  max-width: 25rem;
+  -webkit-animation: animation 2s ease-in-out infinite;
+          animation: animation 2s ease-in-out infinite;
+}
+.formbox {
+  width: 50%;
+  min-width: 30rem;
+  padding: 2rem;
+  border: 2px solid #cac8c8;
+  border-radius: 1rem;
+}
+.eachinputbox {
+  position: relative;
+}
+.eachinputbox i {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.7rem;
+  font-size: 1.2rem;
+  color: #696868;
+}
+.formbox h3 {
+  text-align: center;
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  color: var(--dark_yellow);
+}
+.formbox .eachline {
+  width: 100%;
+  margin: 0.7rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.formbox input,
+.formbox textarea,
+.formbox select {
+  padding: 0.7rem 0.7rem 0.7rem 2.3rem;
+  border: 1px solid grey;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  color: #2f2e2e;
+  width: 100%;
+}
+.formbox .full_input {
+  width: 100%;
+}
+.formbox .half_input {
+  width: calc(50% - 0.5rem);
+}
+.formbox .half_input.left {
+  margin-right: 0.7rem;
+}
+.formbox textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+.formbox .primary-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--dark_yellow);
+  color: white;
+  border: none;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+@-webkit-keyframes animation {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes animation {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+/* MAIN SECTION  ENDS*/
+.topline
+{
+  display: flex;
+    justify-content: space-between;
+    margin: 2rem 10rem 0;
+    align-items: flex-end;
+}
+.main-title
+{
+  color: var(--dark_yellow);
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+.eachline p.value i,.star{
+  color: #ffc107;
+}
+.task-box
+{
+  border: 3px solid #d6d3d3;
+  padding: 2rem;
+  margin: 1rem 10rem 2rem;
+  border-radius: 1rem;
+  background-color: white;
+  overflow-x: scroll;
+}
+
+.task-box.active
+{
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+tr th,tr td
+{
+  vertical-align: middle;
+  text-align: center;
+}
+tr th
+{
+  white-space:nowrap;
+}
+td button,td a
+{
+  width: 7rem;
+}
+.online
+{
+  color: #4caf50;
+  font-weight: 500;
+}
+.offline
+{
+  font-weight: 500;
+  color: #f44336;
+}
+
+.back
+{
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    border: 1px solid #a09f9f;
+    color: grey;
+    background: white;
+    width: 5rem;
+    margin-bottom: 1rem;
+}
+
+/* Media QUERY*/
+@media only screen and (max-width: 1200px) {
+  .mainarea {
+    margin: 3rem 5rem;
+  }
+  .topline
+  {
+    margin: 2rem 5rem 0;
+  }
+  .task-box
+  {
+    margin: 1rem 5rem 2rem;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .mainarea {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .imgbox {
+    width: 100%;
+  }
+  .reply-main-box
+  {
+    flex-direction: column;
+  }
+  .query-box {
+    margin: 0 0 0.5rem 0;
+}
+.reply-box {
+  margin: 0.5rem 0 0 0;
+}
+}
+@media only screen and (max-width: 900px) {
+  .mainarea {
+    margin: 3rem 2rem;
+  }
+  .topline
+  {
+    margin: 2rem 2rem 0;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .task-box
+  {
+    margin: 1rem 2rem 2rem;
+    padding: 1rem;
+  }
+  .query-box, .reply-box {
+    border: none;
+  }
+  .stats-box
+  {
+    margin-bottom: 2rem;
+  }
+  .formbox {
+    min-width: 26rem;
+    max-width: 100%;
+  }
+  tr th,tr td
+{
+  white-space:normal;
+  min-width: 7rem;
+}
+}
+@media only screen and (max-width: 500px) {
+  .mainarea {
+    margin: 3rem 1rem;
+    padding: 1rem;
+  }
+  .task-box
+  {
+    margin: 1rem 1rem 2rem;
+  }
+  .topline
+  {
+    margin: 2rem 1rem 0;
+    padding: 1rem;
+  }
+  .main-title {
+    font-size: 2.2rem;
+  }
+  .mess-eachline {
+    flex-direction: column;
+    margin: 0.7rem 0;
+}
+.query-mess-box {
+  width: 100%;
+  margin: 0.4rem 0;
+}
+  .formbox {
+    width: 100%;
+    min-width: auto;
+    padding: 0;
+    border: none;
+  }
+}

@@ -5,7 +5,9 @@
     <a href="/query">Move to Query Page</a>
     <a href="/login">Move to Executive Login</a>
     <a href="/executive/assigned_tasks">Assigned Tasks</a>
-    <a href="/executive/reply">Move to Reply</a>
+    <a href="/executive/reply/56767856">Move to Reply</a>
+    <a href="/admin/add_executive">Admin Add Executive</a>
+    <a href="/admin/all_executive">Admin All Executive</a>
 </div>
 
 @include('includes.footer')
