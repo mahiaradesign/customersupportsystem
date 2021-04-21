@@ -13,14 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 Route::get('/', function () {
     return view('index');
 });
+
 // to visit the query page
 Route::get('/query', 'App\Http\Controllers\TicketsController@index');
 
@@ -44,6 +40,7 @@ Route::get('/executive/reply/{ticket_id}', 'App\Http\Controllers\ResponsesContro
 // Use ticket_id from table 
 Route:: post('/executive/sendEmail/{ticket_id}','App\Http\Controllers\ResponsesController@sendEmail')->name('executive.sendEmail.ticket_id');
 
+// for admins only
 Route::get('/admin/add_executive', function () {
     return view('/admin/add_executive');
 });

@@ -59,12 +59,24 @@
             </div>
           </div>
           <div class="reply-box">
+            @if($message=Session::get('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if($message=Session::get('fail'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ $message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <h3>Your Message</h3>
             <form method="POST" action="{{ route('executive.sendEmail.ticket_id', ['ticket_id' => $id ])}}">
             @csrf
             <div class="mess-eachline">
-              <p class="name">Name</p>
-              <p class="value">Executive Name</p>
+              <p class="name">Exective Email</p>
+              <input class="value" name="from" value="{{Auth::user()->email}}" placeholder="{{Auth::user()->email}}"/> 
             </div>
             <div class="mess-eachline">
               <p class="name">Reply</p>
@@ -74,5 +86,6 @@
           </form>
           </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
   </body>
 </html>
