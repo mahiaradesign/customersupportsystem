@@ -41,9 +41,15 @@ Route::get('/executive/reply/{ticket_id}', 'App\Http\Controllers\ResponsesContro
 Route:: post('/executive/sendEmail/{ticket_id}','App\Http\Controllers\ResponsesController@sendEmail')->name('executive.sendEmail.ticket_id');
 
 // for admins only
+Route::get('/admin', 'App\Http\Controllers\AdminController@index');
+
 Route::get('/admin/add_executive', function () {
     return view('/admin/add_executive');
 });
 Route::get('/admin/all_executive', function () {
     return view('/admin/all_executive');
 });
+
+// to register the executive
+Route::get('/register', 'App\Http\Controllers\Auth\RegisterController@register');
+Route::post('/register', 'App\Http\Controllers\Auth\RegisterController@store');

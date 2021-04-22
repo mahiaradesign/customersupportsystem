@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use App\Models\admin;
+
+
 
 class LoginController extends Controller
 {
@@ -33,6 +36,14 @@ class LoginController extends Controller
           
 
           return redirect('home')->with(['email'=> $credentials['email'],'id'=>$user->id]);
+        }else{
+            $adm=admin::where(["email"=>$credentials['email']])->first();
+            if ($adm){
+              if($adm->password == $credentials['password']){
+                
+                return redirect('admin')->with(['email'=> $credentials['email'],'id'=>$adm->id]);
+              }
+            }
         }
 
         return redirect('login')->with('error', 'Oops! You have entered invalid credentials');

@@ -18,7 +18,7 @@
     />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <title>Mahiara Executive Login</title>
+    <title>Mahiara Login</title>
     <link rel="stylesheet" href="css/executive/styles.css" />
   </head>
   <body class="flex">
@@ -27,7 +27,7 @@
             <img src="/images/hero_login.svg" alt="login-img">
         </div>
         <div class="formbox">
-            <h3><i class="fa fa-shield" aria-hidden="true"></i> EXECUTIVE LOGIN</h3>
+            <h3><i class="fa fa-shield" aria-hidden="true"></i>LOGIN</h3>
             
             {{-- styling required here --}}
             @if(session()->has('error'))
