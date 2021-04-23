@@ -19,7 +19,10 @@
       </div>
     @endif
     <div class="container">
-        <h1>You are successfully logged in! </h1>
+        <h1>You are successfully logged in!{{auth()->user()->name}} </h1>
+
+        <h4>All The admin Staff Inside here</h4>
+   </div>
    </div>
    
     <div class="redirect_link">

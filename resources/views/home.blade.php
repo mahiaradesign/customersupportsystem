@@ -19,11 +19,14 @@
       </div>
     @endif
     <div class="container">
-        <h1>You are successfully logged in! </h1>
+        <h1>You are successfully logged in!{{auth()->user()->name}} </h1>
+
+        <h4>All The Executive Staff Inside here</h4>
    </div>
    
     <div class="redirect_link">
-        <a href="{{route('executive.assigned_tasks.id', ['id' => Session::get('id') ])}}">Assigned Tasks</a>
+        {{--<!-- <a href="{{route('executive.assigned_tasks.id', ['id' => Session::get('id') ])}}">Assigned Tasks</a> -->--}}
+
 
         <a href="{{route('logout')}}">Logout</a>
     </div>

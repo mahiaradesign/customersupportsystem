@@ -37,7 +37,7 @@
             </div>
             @endif
 
-            <form action="{{ route('login') }}" method="POST" name="myForm">
+            <form action="#" method="POST" name="myForm">
               @csrf
               <div class="eachline">
                 <div class="eachinputbox full_input">

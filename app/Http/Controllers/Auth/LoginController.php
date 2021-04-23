@@ -3,56 +3,82 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Auth;
-use App\Models\User;
-use App\Models\admin;
-
-
-
+use Illuminate\Support\Facades\Redirect;
 class LoginController extends Controller
 {
-    public function login()
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+    public function login(Request $request)
     {
-
-      return view('auth.login');
-    }
-
-    public function authenticate(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+        //print_r('1');die;
+        $this->validate($request, 
+        [
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
-        $credentials = $request->only('email', 'password');
-
-        $remember_me  = ( !empty( $request->remember_me ) )? TRUE : FALSE;
-
-        if (Auth::attempt($credentials)) {
-          $user = User::where(["email" => $credentials['email']])->first();
-            
-          Auth::login($user, $remember_me);
-          
-
-          return redirect('home')->with(['email'=> $credentials['email'],'id'=>$user->id]);
-        }else{
-            $adm=admin::where(["email"=>$credentials['email']])->first();
-            if ($adm){
-              if($adm->password == $credentials['password']){
+        $credentials = $request->only(['email', 'password']);
+        // dd($credentials);die;
+            if (Auth::guard()->attempt($credentials)) {
+               
                 
-                return redirect('admin')->with(['email'=> $credentials['email'],'id'=>$adm->id]);
-              }
+              
+                if (Auth::user()->role == 'admin'){
+                    return redirect::to('/admin');
+                } else{
+                    return Redirect::to('/home');
+                 
+                }
+               
             }
+            else
+            {
+                Auth::logout();
+                return view('auth.login')->with('error','Sorry Credentials Not known to us or your Account Not yet Verified');
+            }
+    }
+
+     use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+    public function showLoginForm()
+    {
+        session()->put('previousUrl', url()->previous());
+        return view('auth.login');
+    }
+    public function redirectTo()
+    {
+        if (Auth::user()->role == 'admin'){
+            return url('admin');
+        } else{
+            return str_replace(url('/'),'', session()->get('previousUrl', '/'));
         }
-
-        return redirect('login')->with('error', 'Oops! You have entered invalid credentials');
     }
-
-    public function logout() {
-      Auth::logout();
-      return redirect('login');
-    }
-
 }
-

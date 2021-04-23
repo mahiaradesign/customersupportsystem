@@ -20,6 +20,7 @@ class CreateFailedJobsTable extends Migration
             $table->text('queue');
             $table->longText('payload');
             $table->longText('exception');
+            $table->datetime('assigned_time');
             $table->timestamp('failed_at')->useCurrent();
         });
     }
