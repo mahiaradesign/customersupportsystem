@@ -1,5 +1,4 @@
 @include('includes.htmlhead')
-@include('includes.navbar')
     @if($email = Session::get('email'))
     <div class="modal" id="myModal" tabindex="-1">
         <div class="modal-dialog">
@@ -38,5 +37,4 @@
             myModal.show()
         },1000)
     </script>
-@include('includes.footer')
 @include('includes.htmlend')
