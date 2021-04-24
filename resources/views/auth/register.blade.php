@@ -81,6 +81,18 @@
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                         </div>
                                     </div>
+                                    <div class="eachline">
+                                        <div class="eachinputbox full_input">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                            <input type="text" name="role" placeholder="Role">
+                                        </div>
+                                      </div>
+                                      <div class="eachline">
+                                        <div class="eachinputbox full_input">
+                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                            <input type="text" name="role_id" placeholder="Role Id">
+                                        </div>
+                                      </div>
 
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">

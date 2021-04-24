@@ -22,7 +22,6 @@ class LoginController extends Controller
     */
     public function login(Request $request)
     {
-        //print_r('1');die;
         $this->validate($request, 
         [
             'email' => 'required',
@@ -30,24 +29,20 @@ class LoginController extends Controller
         ]);
 
         $credentials = $request->only(['email', 'password']);
-        // dd($credentials);die;
-            if (Auth::guard()->attempt($credentials)) {
-               
-                
-              
-                if (Auth::user()->role == 'admin'){
-                    return redirect::to('/admin');
-                } else{
-                    return Redirect::to('/home');
-                 
-                }
-               
+        if (Auth::guard()->attempt($credentials)) {
+            
+            if (Auth::user()->role == 'admin'){
+                return redirect::to('/admin');
+            } else{
+                return Redirect::to('/home');
             }
-            else
-            {
-                Auth::logout();
-                return view('auth.login')->with('error','Sorry Credentials Not known to us or your Account Not yet Verified');
-            }
+            
+        }
+        else
+        {
+            Auth::logout();
+            return view('auth.login')->with('error','Sorry Credentials Not known to us or your Account Not yet Verified');
+        }
     }
 
      use AuthenticatesUsers;

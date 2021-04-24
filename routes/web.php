@@ -44,16 +44,20 @@ Route:: post('/executive/sendEmail/{ticket_id}','ResponsesController@sendEmail')
 Route::group(['middleware' => ['auth']], function () { 
 Route::get('/admin', 'AdminController@index');
 });
-Route::get('/admin/add_executive', function () {
-    return view('/admin/add_executive');
+
+// to register the executive
+Route::group(['middleware' => ['auth']], function () { 
+    Route::get('/admin/add_register', 'AdminController@registerExec');
 });
+
+Route::post('/admin/add_register', 'AdminController@storeExec')->name('add_exe');
+
+
+
 Route::get('/admin/all_executive', function () {
     return view('/admin/all_executive');
 });
 
-// to register the executive
-Route::get('/register', 'Auth\RegisterController@register');
-Route::post('/register', 'Auth\RegisterController@store');
 
 Auth::routes();
 

@@ -25,7 +25,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        if(Auth::user()->role=="executive"){
+            return view('home');
+        }
+        else{
+            return redirect()->back();        }
     }
     
 
