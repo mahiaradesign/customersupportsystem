@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -10,6 +11,10 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+=======
+use App\Models\executive;
+use App\Models\User;
+>>>>>>> 3e188df09b79185c9a40ad195fe930e9ad6f6f4d
 
 class AdminController extends Controller
 {
@@ -64,5 +69,10 @@ class AdminController extends Controller
         else{
             return view('/admin');
         }
+    }
+    public function all_executive(){
+        $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
+        // return $exec_data;
+        return view('admin/all_executive')->with('exec_data',$exec_data);
     }
 }

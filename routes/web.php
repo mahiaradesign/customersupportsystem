@@ -49,6 +49,7 @@ Route::get('/admin', 'AdminController@index');
 Route::group(['middleware' => ['auth']], function () { 
     Route::get('/admin/add_register', 'AdminController@registerExec');
 });
+<<<<<<< HEAD
 
 Route::post('/admin/add_register', 'AdminController@storeExec')->name('add_exe');
 
@@ -57,6 +58,9 @@ Route::post('/admin/add_register', 'AdminController@storeExec')->name('add_exe')
 Route::get('/admin/all_executive', function () {
     return view('/admin/all_executive');
 });
+=======
+Route::get('/admin/all_executive','AdminController@all_executive');
+>>>>>>> 3e188df09b79185c9a40ad195fe930e9ad6f6f4d
 
 
 Auth::routes();

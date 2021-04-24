@@ -1,6 +1,6 @@
 @include('includes.htmlhead')
-@include('includes.navbar')
-    @if($email = Session::get('email'))
+    {{-- Modal Notification On Login --}}
+    @if(session('new_login')=="yes")
     <div class="modal" id="myModal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -11,22 +11,19 @@
               </button>
             </div>
             <div class="modal-body">
-              <p class="mb-0">Welcome {{$email}}</p>
+              <p class="mb-0">Welcome {{auth()->user()->name}}</p>
               <p class="mb-0">You are online.</p>
             </div>
           </div>
         </div>
       </div>
-    @endif
-    <div class="container">
-        <h1>You are successfully logged in!{{auth()->user()->name}} </h1>
+      @endif
+      {{-- Modal Notification On Login Ends--}}
 
-        <h4>All The admin Staff Inside here</h4>
-   </div>
-   </div>
-   
     <div class="redirect_link">
         <h1>Admin Panel</h1>
+        <a href="/admin/add_executive">Add Executive</a>
+        <a href="/admin/all_executive">All Executive</a>
         <a href="{{route('logout')}}">Logout</a>
         <a href="{{url('admin/add_register')}}">Add Executive</a>
     </div>
@@ -36,7 +33,6 @@
         document.querySelector("#myModal button").addEventListener("click",function(){myModal.hide()})
         setTimeout(function(){
             myModal.show()
-        },1000)
+        },1000);
     </script>
-@include('includes.footer')
 @include('includes.htmlend')
