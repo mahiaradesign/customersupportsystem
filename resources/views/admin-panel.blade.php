@@ -1,5 +1,6 @@
 @include('includes.htmlhead')
     {{-- Modal Notification On Login --}}
+    @if(session('new_login')=="yes")
     <div class="modal" id="myModal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -16,6 +17,7 @@
           </div>
         </div>
       </div>
+      @endif
       {{-- Modal Notification On Login Ends--}}
 
     <div class="redirect_link">

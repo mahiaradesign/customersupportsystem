@@ -47,9 +47,7 @@ Route::get('/admin', 'AdminController@index');
 Route::get('/admin/add_executive', function () {
     return view('/admin/add_executive');
 });
-Route::get('/admin/all_executive', function () {
-    return view('/admin/all_executive');
-});
+Route::get('/admin/all_executive','AdminController@all_executive');
 
 // to register the executive
 Route::get('/register', 'Auth\RegisterController@register');
