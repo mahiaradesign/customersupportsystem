@@ -38,26 +38,25 @@ class AdminController extends Controller
 
     public function storeExec(Request $request){
         if(Auth::user()->role == 'admin'){
-            // print_r(Auth::user());
-
-            // $request->validate([
-            //     'name' => 'required|string|max:255',
-            //     'email' => 'required|string|email|max:255|unique:users',
-            //     'password' =>'required|string|min:8|confirmed',
-            //     'role'=>'required|string|max:20',
-            //     'role_id'=>'required|string|max:20',
-            // ]);
-    
             $que=User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'role'=>$request->role,
-                'role_id'=>$request->role_id,
+                'role'=>"executive",
+                'role_id'=>"2",
             ]);
-
-            if($que){
-                return back()->with('success', 'Executive created!!!'.$que->name);
+            if($que)
+            {
+                $exec_data=executive::create([
+                    'executive_id'=> $que->id,
+                    'position' => $request->position,
+                    'query_assigned' => "none",
+                    'query_solved' => "none",
+                    'query_pending' => "none",
+                ]);
+            }
+            if($que&&$exec_data){
+                return back()->with('success', 'Executive created!!! '.$que->name);
             }
             return back()->with('fail', 'Something went Wrong!!!');
     
@@ -68,7 +67,6 @@ class AdminController extends Controller
     }
     public function all_executive(){
         $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
-        // return $exec_data;
         return view('admin/all_executive')->with('exec_data',$exec_data);
     }
 }

@@ -21,26 +21,67 @@
             <tbody>
             @foreach ($exec_data as $eachdata)
                 <tr>
+
+                {{-- Showing ID of executive  --}}
                 <td>#{{$eachdata->id}}</td>
+
+                {{-- Showing Name of executive  --}}
                 <td>{{$eachdata->name}}</td>
+
+                {{-- Showing Email of executive  --}}
                 <td>{{$eachdata->email}}</td>
+
+                {{-- Showing Position of executive  --}}
                 <td>{{$eachdata->position}}</td>
+
+                {{-- Showing Status of executive  --}}
                 @if($eachdata->status=="online")
                     <td class="online">{{$eachdata->status}}</td>
                 @else
                   <td class="offline">{{$eachdata->status}}</td>
                 @endif
-                <td>{{$eachdata->rating}} <i class="fa fa-star star" aria-hidden="true"></i></td>
-                <td>{{count(explode(',', $eachdata->query_assigned))}}</td>
-                <td>{{count(explode(',', $eachdata->query_solved))}}</td>
-                <td>{{count(explode(',', $eachdata->query_pending))}}</td>
+
+                {{-- Showing Rating  --}}
+                <td>{{number_format($eachdata->rating,2)}} <i class="fa fa-star star" aria-hidden="true"></i></td>
+                
+                {{-- Showing Query Assigned  --}}
+                <td>
+                @php
+                    if($eachdata->query_assigned!="none")
+                      echo count(explode(',', $eachdata->query_assigned));
+                    else
+                      echo 0;
+                @endphp
+                </td>
+
+                {{-- Showing Query Solved  --}}
+                <td>
+                @php
+                    if($eachdata->query_solved!="none")
+                      echo count(explode(',', $eachdata->query_solved));
+                    else
+                      echo 0;
+                @endphp
+                </td>
+
+                {{-- Showing Query Pending  --}}
+                <td>
+                @php
+                    if($eachdata->query_pending!="none")
+                      echo count(explode(',', $eachdata->query_pending));
+                    else
+                      echo 0;
+                @endphp
+                </td>
+
+                {{-- Showing Join Date  --}}
                 <td>{{date('d-m-Y h:i a', strtotime($eachdata->created_at))}}</td> 
               </tr>
-              
             @endforeach
             </tbody>
           </table>
         @else
+        {{-- Showing Error When no executive found  --}}
         <div class="alert alert-danger" role="alert">
           No Executive Found
         </div>

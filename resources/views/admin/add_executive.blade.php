@@ -49,22 +49,10 @@
               <div class="eachline">
                 <div class="eachinputbox full_input">
                 <i class="fa fa-users" aria-hidden="true"></i>
-                    <select name="executive">
+                    <select name="position">
                       <option value="executive" selected>Junior</option>
                       <option value="senior">Senior</option>
                     </select>
-                </div>
-              </div>
-              <div class="eachline">
-                <div class="eachinputbox full_input">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <input type="text" name="role" placeholder="Role">
-                </div>
-              </div>
-              <div class="eachline">
-                <div class="eachinputbox full_input">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <input type="text" name="role_id" placeholder="Role Id">
                 </div>
               </div>
               <button  type="submit" name="add_submit_submit" class="primary-btn">Add Executive</button>
