@@ -39,7 +39,7 @@
               <p class="value">abc@def.com</p>
             </div>
             <div class="mess-eachline">
-              <p class="name">Message with Ticket_Id #{{ $id }}</p>
+              <p class="name">Message with Ticket_Id</p>
               <div class="query-mess-box">
                 <p>Lorem ipsum dolor sit 
                   amet consectetur adipisicing elit. Illo quos maxime 

@@ -5,7 +5,7 @@
     </div>
         <div class="task-box">
         @if (count($exec_data))
-            <table class="table table-bordered table-striped">
+          <table class="table table-bordered table-striped">
             <thead class="table-dark">
               <th>ID</th>
               <th>Name</th>

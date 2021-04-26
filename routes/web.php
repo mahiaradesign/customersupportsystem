@@ -34,7 +34,7 @@ Route::get('/home','HomeController@index' );
 // Route for executive assigned tasks
 Route::get('/executive/assigned_tasks/{id}','HomeController@tasks' )->name('executive.assigned_tasks.id');
 // Route for executive reply
-Route::get('/executive/reply/{ticket_id}', 'ResponsesController@reply');
+Route::get('/executive/reply/{ticket_id}', 'ResponsesController@reply')->name('executive.reply.ticket_id');
 
 // ROUTE FOR SENDING MAIL {use it to send mail from the executive to the author with ticket id = ticket_id} 
 // Use ticket_id from table 
@@ -50,9 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/add_register', 'AdminController@registerExec');
 });
 Route::post('/admin/add_register', 'AdminController@storeExec')->name('add_exe');
-Route::get('/admin/all_executive', function () {
-    return view('/admin/all_executive');
-});
+// Route::get('/admin/all_executive', function () {
+//     return view('/admin/all_executive');
+// });
 Route::get('/admin/all_executive','AdminController@all_executive');
 
 

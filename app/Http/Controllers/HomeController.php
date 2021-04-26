@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
+use App\Models\tickets;
 
 class HomeController extends Controller
 {
@@ -42,13 +44,16 @@ class HomeController extends Controller
     //     }
         
     // }
-    // public function tasks(){
-    //     if(Auth::check()){
-    //         return view('/executive/assigned_tasks');
-    //     }
-    //     else{
-    //         return redirect('/login');
-    //     }
+    public function tasks(){
+        if(Auth::user()->role=="executive"){
+
+            $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
+
+            return view('/executive/assigned_tasks')->with('tickets',$tickets);
+        }
+        else{
+            return redirect('/login');
+        }
         
-    // }
+    }
 }
