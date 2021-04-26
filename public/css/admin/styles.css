@@ -143,6 +143,27 @@ body.flex
 }
 
 /* Main Arae SECTION  */
+nav
+{
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 5rem;
+  background: #464444;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+nav .logo
+{
+  font-size: 1.5rem;
+  color: white;
+}
+nav .links a
+{
+  color: #f1f1f1;
+  margin: 0 0.5rem;
+}
 .mainarea {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -382,6 +403,10 @@ td button,td a
   .mainarea {
     margin: 3rem 2rem;
   }
+  nav
+  {
+    padding: 0.5rem 2rem;
+  }
   .topline
   {
     margin: 2rem 2rem 0;
@@ -414,6 +439,14 @@ td button,td a
   .mainarea {
     margin: 3rem 1rem;
     padding: 1rem;
+  }
+  nav
+  {
+    flex-direction: column;
+  }
+  nav .logo
+  {
+    margin-bottom: 0.3rem;
   }
   .task-box
   {

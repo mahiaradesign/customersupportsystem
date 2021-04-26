@@ -1,5 +1,6 @@
 @include('admin.adminhead',['title'=>"All Executive"]);
-  <body>
+<body>
+  @include('admin.navbar')
     <div class="topline">
       <h1 class="main-title">All Executives</h1>
     </div>

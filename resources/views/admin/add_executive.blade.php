@@ -1,5 +1,6 @@
 @include('admin.adminhead', ['title' => "Add Executive"])
   <body class="flex">
+    @include('admin.navbar')
     <section class="mainarea">
         <div class="imgbox">
             <img src="/images/add_executive.png" alt="login-img">
