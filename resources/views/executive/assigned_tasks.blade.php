@@ -22,7 +22,7 @@
                   <tr>
                     <td>#{{$ticket->ticket_id}}</td>
                     <td>{{$ticket->first_name}} {{$ticket->last_name}}</td>
-                    <td>{{$ticket->message}}</td>
+                    <td>{{substr($ticket->message,0,80).".....(more)"}}</td>
                     <td>{{$ticket->created_at}}</td>
 
                     @if( $ticket->status === 'assigned')
@@ -42,6 +42,25 @@
             </div>
           @endif
         </div>
+
+        {{-- If got success --}}
+        @if($message=Session::get('success'))
+         <div class="popup success">
+          <i class="fa fa-check-circle main-icon" aria-hidden="true"></i>
+          <p>{{$message}}</p>
+          <i class="fa fa-times close" aria-hidden="true"></i>
+        </div>
+      @endif
+
+      {{-- If got Failure --}}
+      @if($message=Session::get('fail'))
+       <div class="popup danger">
+          <i class="fa fa-exclamation-circle main-icon" aria-hidden="true"></i>
+          <p>{{$message}}</p>
+          <i class="fa fa-times close" aria-hidden="true"></i>
+        </div>
+      @endif
+
         <script src="/js/executive/assigned_task.js"></script>
   </body>
 </html>

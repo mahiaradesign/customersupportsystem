@@ -53,7 +53,7 @@ class ResponsesController extends Controller
                 $affectedRows = tickets::where('ticket_id','=',$ticket_id)->update(['status' => $status]);
                 Mail::to($to_user->email)->send(new ResponseMail($request->reply_message, $ticket_id));
                 //changes to be made here
-                return view('home')->with('success', 'Your Response is Sent to '.$to_user->email);
+                return redirect('/executive/assigned_tasks')->with('success', 'Your Response is Sent to '.$to_user->email);
             }
             return back()->with('fail', 'Something went Wrong!!!');
         }
