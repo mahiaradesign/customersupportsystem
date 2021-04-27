@@ -14,7 +14,13 @@ class ResponsesController extends Controller
     //
     public function reply($id) {
         if(Auth::check()){
-            return view('executive.reply')->with(['id'=>$id]); 
+            if(tickets::where('ticket_id', $id)->where('assigned_to',Auth::user()->id)->count()==1)
+            {
+                $query_data=tickets::where('ticket_id', $id)->where('assigned_to',Auth::user()->id)->first();
+                return view('executive.reply')->with('query_data',$query_data);
+            }
+            else
+                return redirect('/home');
         }
         else{
             return redirect('/login');

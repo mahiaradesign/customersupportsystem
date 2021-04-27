@@ -3,7 +3,7 @@
     @include('executive.navbar')
     <div class="topline">
       <div class="title-button-box">
-        <button class="back"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</button>
+        <a href="/executive/assigned_tasks/"><button class="back"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</button></a>
         <h1 class="main-title">Solve Issues</h1>
         <a href="#"><button class="main-btn">Pass to Senior Executive <i class="fa fa-angle-double-right" aria-hidden="true"></i></button></a>
       </div>
@@ -16,29 +16,20 @@
             <h3>Customer's Message</h3>
             <div class="mess-eachline">
               <p class="name">Name</p>
-              <p class="value">Rahul Sah</p>
+              <p class="value">{{$query_data->first_name." ".$query_data->last_name}}</p>
             </div>
             <div class="mess-eachline">
               <p class="name">Email</p>
-              <p class="value">abc@def.com</p>
+              <p class="value">{{$query_data->email}}</p>
             </div>
             <div class="mess-eachline">
-              <p class="name">Message with Ticket_Id</p>
+              <p class="name">Ticket ID</p>
+              <p class="value">#{{$query_data->ticket_id}}</p>
+            </div>
+            <div class="mess-eachline">
+              <p class="name">Message</p>
               <div class="query-mess-box">
-                <p>Lorem ipsum dolor sit 
-                  amet consectetur adipisicing elit. Illo quos maxime 
-                  quo laborum nulla itaque! Excepturi mollitia repudiandae tenetur
-                  totam nihil eius quidem laborum? Blanditiis eum veniam deleniti 
-                  harum hic!Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Illo quos maxime quo laborum nulla itaque! Excepturi mollitia 
-                  repudiandae tenetur totam nihil eius quidem laborum? Blanditiis 
-                  eum veniam deleniti harum hic!Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Illo quos maxime quo laborum nulla itaque!
-                  Excepturi mollitia repudiandae tenetur totam nihil eius quidem
-                  laborum? Blanditiis eum veniam deleniti harum hic!Lorem ipsum
-                  dolor sit amet consectetur adipisicing elit. Illo quos maxime 
-                  quo laborum nulla itaque! Excepturi mollitia repudiandae tenetur 
-                  totam nihil eius quidem laborum? Blanditiis eum veniam deleniti harum hic!</p>
+                <p>{{$query_data->message}}</p>
               </div>
             </div>
           </div>
@@ -56,11 +47,11 @@
                 </div>
             @endif
             <h3>Your Message</h3>
-            <form method="POST" action="{{ route('executive.sendEmail.ticket_id', ['ticket_id' => $id ])}}">
+            <form method="POST" action="{{ route('executive.sendEmail.ticket_id', ['ticket_id' => $query_data->id ])}}">
             @csrf
             <div class="mess-eachline">
-              <p class="name">Exective Email</p>
-              <input class="value" name="from" value="{{Auth::user()->email}}" placeholder="{{Auth::user()->email}}"/> 
+              <p class="name">Your Name</p>
+              <p class="value">{{Auth::user()->name}}</p>
             </div>
             <div class="mess-eachline">
               <p class="name">Reply</p>
