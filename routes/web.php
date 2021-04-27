@@ -32,7 +32,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home','HomeController@index' );
 
 // Route for executive assigned tasks
-Route::get('/executive/assigned_tasks/{id}','HomeController@tasks' )->name('executive.assigned_tasks.id');
+Route::get('/executive/assigned_tasks','HomeController@tasks' )->name('executive.assigned_tasks');
 // Route for executive reply
 Route::get('/executive/reply/{ticket_id}', 'ResponsesController@reply')->name('executive.reply.ticket_id');
 
