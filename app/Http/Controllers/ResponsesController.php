@@ -17,7 +17,12 @@ class ResponsesController extends Controller
             if(tickets::where('ticket_id', $id)->where('assigned_to',Auth::user()->id)->count()==1)
             {
                 $query_data=tickets::where('ticket_id', $id)->where('assigned_to',Auth::user()->id)->first();
-                return view('executive.reply')->with('query_data',$query_data);
+                if($query_data->status === 'solved'){
+                    return back();
+                }
+                else{
+                    return view('executive.reply')->with('query_data',$query_data);
+                }
             }
             else
                 return redirect('/home');
@@ -32,21 +37,23 @@ class ResponsesController extends Controller
     public function sendEmail(Request $request, $ticket_id){
 
         if(Auth::check()){
-            $to_user=tickets::where('ticket_id',$ticket_id)->first();
+            $to_user=tickets::where('ticket_id','=',$ticket_id)->first();
 
             $data = new response;
-            $data->from = $request->from;
+            $data->from = Auth::user()->email;
             $data->response = $request->reply_message;
             $data->to = $to_user->email;
+            
             $que = $data->save();
 
             
 
             if($que){
-
+                $status ='solved';
+                $affectedRows = tickets::where('ticket_id','=',$ticket_id)->update(['status' => $status]);
                 Mail::to($to_user->email)->send(new ResponseMail($request->reply_message, $ticket_id));
-                // $to->user->assigned_to= 'solved'; //yet to create this attribute in the tickets_table
-                return back()->with('success', 'Your Response is Sent to '.$to_user->email);
+                //changes to be made here
+                return view('home')->with('success', 'Your Response is Sent to '.$to_user->email);
             }
             return back()->with('fail', 'Something went Wrong!!!');
         }

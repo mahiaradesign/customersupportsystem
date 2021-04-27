@@ -28,6 +28,7 @@ class TicketsController extends Controller
         $data->email = $request->email;
         $data->message = $request->message;
         $data->ticket_id = $request->ticket_id;
+        $data->status="waiting";
         $que = $data->save();
 
         if($que){

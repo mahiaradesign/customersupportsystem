@@ -22,7 +22,12 @@
 
         <h4>All The Executive Staff Inside here</h4>
    </div>
-   
+   @if($message=Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
     <div class="redirect_link">
         <a href="{{route('executive.assigned_tasks')}}">Assigned Tasks</a>
         <a href="{{route('logout')}}">Logout</a>

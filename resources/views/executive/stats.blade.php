@@ -2,7 +2,7 @@
     <h4>YOUR STATS</h4>
     <div class="eachline">
       <p class="name">Name:</p>
-      <p class="value">Executive Name</p>
+      <p class="value">{{Auth::user()->name}}</p>
     </div>
     <div class="eachline">
       <p class="name">Issues Pending:</p>

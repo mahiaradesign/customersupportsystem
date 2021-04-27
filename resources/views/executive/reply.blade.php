@@ -47,7 +47,7 @@
                 </div>
             @endif
             <h3>Your Message</h3>
-            <form method="POST" action="{{ route('executive.sendEmail.ticket_id', ['ticket_id' => $query_data->id ])}}">
+            <form method="POST" action="{{ route('executive.sendEmail.ticket_id', ['ticket_id' => $query_data->ticket_id ])}}">
             @csrf
             <div class="mess-eachline">
               <p class="name">Your Name</p>

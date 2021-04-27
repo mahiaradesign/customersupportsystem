@@ -20,7 +20,8 @@ class CreateTicketsTabele extends Migration
             $table->string('email',100);
             $table->text('message',255);
             $table->integer('ticket_id');
-            $table->integer('assigned_to');
+            $table->integer('assigned_to')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

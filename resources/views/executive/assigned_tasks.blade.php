@@ -5,6 +5,7 @@
       <h1 class="main-title">Assigned Task</h1>
       @include('executive.stats')
     </div>
+    
         <div class="task-box">
           @if(count($tickets))
             <table class="table table-bordered table-striped">
@@ -12,8 +13,7 @@
                 <th>TICKET ID</th>
                 <th>Name</th>
                 <th>Message</th>
-                <th>Date</th>
-                <th>Time</th>
+                <th>Date & Time</th>
                 <th>Respond</th>
               </thead>
               <tbody>
@@ -23,9 +23,14 @@
                     <td>#{{$ticket->ticket_id}}</td>
                     <td>{{$ticket->first_name}} {{$ticket->last_name}}</td>
                     <td>{{$ticket->message}}</td>
-                    <td>20 Jan 2020</td>
-                    <td>12:20 AM</td>
-                    <td><a href="{{route('executive.reply.ticket_id', ['ticket_id' => $ticket->ticket_id ])}}"><button class="btn btn-success">REPLY</button></a></td>
+                    <td>{{$ticket->created_at}}</td>
+
+                    @if( $ticket->status === 'assigned')
+                      <td><a href="{{route('executive.reply.ticket_id', ['ticket_id' => $ticket->ticket_id ])}}"><button class="btn btn-primary">REPLY</button></a></td>
+                    @else
+                      <td><button class="btn btn-success" disabled>SOLVED</button></td>
+                    @endif
+
                   </tr>
                 @endforeach
               </tbody>
