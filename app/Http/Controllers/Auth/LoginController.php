@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\executive;
 class LoginController extends Controller
 {
     /*
@@ -34,12 +35,16 @@ class LoginController extends Controller
             if (Auth::user()->role == 'admin'){
                 return redirect::to('/admin');
             } else{
+                executive::where('executive_id','=',Auth::user()->id)->update(['status'=>'online']);
                 return Redirect::to('/home');
             }
             
         }
         else
         {
+            if (Auth::user()->role == 'executive'){
+                executive::where('executive_id','=',Auth::user()->id)->update(['status'=>'offline']);
+            } 
             Auth::logout();
             return view('auth.login')->with('error','Sorry Credentials Not known to us or your Account Not yet Verified');
         }
@@ -75,5 +80,13 @@ class LoginController extends Controller
         } else{
             return str_replace(url('/'),'', session()->get('previousUrl', '/'));
         }
+    }
+
+    public function logout(){
+        if (Auth::user()->role == 'executive'){
+            executive::where('executive_id','=',Auth::user()->id)->update(['status'=>'offline']);
+        } 
+        Auth::logout();
+        return view('auth.login');
     }
 }
