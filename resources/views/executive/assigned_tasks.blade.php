@@ -22,7 +22,7 @@
                   <tr>
                     <td>#{{$ticket->ticket_id}}</td>
                     <td>{{$ticket->first_name}} {{$ticket->last_name}}</td>
-                    <td>{{$ticket->message}}</td>
+                    <td>{{substr($ticket->message,0,80).".....(more)"}}</td>
                     <td>{{$ticket->created_at}}</td>
 
                     @if( $ticket->status === 'assigned')
@@ -42,6 +42,7 @@
             </div>
           @endif
         </div>
+
         {{-- If got success --}}
         @if($message=Session::get('success'))
          <div class="popup success">

@@ -24,3 +24,11 @@ slider.addEventListener('mousemove', (e) => {
   const walk = (x - startX) * 2;
   slider.scrollLeft = scrollLeft - walk;
 });
+
+// For closing the side success or error message
+if(document.querySelector(".popup")!=null)
+{
+  document.querySelector(".popup i.close").addEventListener("click",function () {
+    document.querySelector(".popup").style.display="none"
+  })
+}

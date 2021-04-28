@@ -128,7 +128,44 @@ body.flex
   font-weight: 500;
   line-height: 1.7;
 }
-
+.popup
+{
+  display: flex;
+    align-items: center;
+    width: 18rem;
+    background: #2196f3;
+    padding: 0.5rem 1rem;
+    color: white;
+    border-radius: 0.5rem;
+    line-height: 1.4;
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+}
+.popup.success
+{
+  background: #4caf50;
+}
+.popup.danger
+{
+  background: #f44336;
+}
+.popup p
+{
+  overflow: hidden;
+}
+.popup .main-icon
+{
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+.popup .close
+{
+  align-self: baseline;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
 /* Main Arae SECTION  */
 nav
 {
