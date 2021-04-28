@@ -35,16 +35,12 @@ class LoginController extends Controller
             if (Auth::user()->role == 'admin'){
                 return redirect::to('/admin');
             } else{
-                executive::where('executive_id','=',Auth::user()->id)->update(['status'=>'online']);
                 return Redirect::to('/home');
             }
             
         }
         else
         {
-            if (Auth::user()->role == 'executive'){
-                executive::where('executive_id','=',Auth::user()->id)->update(['status'=>'offline']);
-            } 
             Auth::logout();
             return view('auth.login')->with('error','Sorry Credentials Not known to us or your Account Not yet Verified');
         }
@@ -82,11 +78,4 @@ class LoginController extends Controller
         }
     }
 
-    public function logout(){
-        if (Auth::user()->role == 'executive'){
-            executive::where('executive_id','=',Auth::user()->id)->update(['status'=>'offline']);
-        } 
-        Auth::logout();
-        return view('auth.login');
-    }
 }

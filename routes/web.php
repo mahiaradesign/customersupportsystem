@@ -50,9 +50,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/add_register', 'AdminController@registerExec');
 });
 Route::post('/admin/add_register', 'AdminController@storeExec')->name('add_exe');
-Route::get('/admin/all_executive','AdminController@all_executive');
+Route::get('/admin/all_executive', function(){
+    return view('admin/executives');
+});
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

@@ -65,8 +65,8 @@ class AdminController extends Controller
             return view('/admin');
         }
     }
-    public function all_executive(){
-        $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
-        return view('admin/all_executive')->with('exec_data',$exec_data);
-    }
+    // public function all_executive(){
+    //     $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
+    //     return view('admin/all_executive')->with('exec_data',$exec_data);
+    // }
 }
