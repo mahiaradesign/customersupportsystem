@@ -13,7 +13,7 @@ class ResponsesController extends Controller
 {
     //
     public function reply($id) {
-        if(Auth::check()){
+        if(Auth::user()->role=="executive"){
             if(tickets::where('ticket_id', $id)->where('assigned_to',Auth::user()->id)->count()==1)
             {
                 $query_data=tickets::where('ticket_id', $id)->where('assigned_to',Auth::user()->id)->first();
@@ -36,7 +36,7 @@ class ResponsesController extends Controller
 
     public function sendEmail(Request $request, $ticket_id){
 
-        if(Auth::check()){
+        if(Auth::user()->role=="executive"){
             $to_user=tickets::where('ticket_id','=',$ticket_id)->first();
 
             $data = new response;
@@ -53,7 +53,10 @@ class ResponsesController extends Controller
                 $affectedRows = tickets::where('ticket_id','=',$ticket_id)->update(['status' => $status]);
                 Mail::to($to_user->email)->send(new ResponseMail($request->reply_message, $ticket_id));
                 //changes to be made here
-                return view('home')->with('success', 'Your Response is Sent to '.$to_user->email);
+                $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
+
+                return redirect('/executive/assigned_tasks')->with(['tickets'=>$tickets, 'success'=>'Your Response is Sent to '.$to_user->first_name.' '.$to_user->last_name ]);
+                // return view('execuitve.')->with('success', 'Your Response is Sent to '.$to_user->email);
             }
             return back()->with('fail', 'Something went Wrong!!!');
         }
