@@ -23,7 +23,7 @@
                     <td>#{{$ticket->ticket_id}}</td>
                     <td>{{$ticket->first_name}} {{$ticket->last_name}}</td>
                     <td>{{substr($ticket->message,0,80).".....(more)"}}</td>
-                    <td>{{$ticket->created_at}}</td>
+                    <td>{{date('d/m/y h:i a', strtotime($ticket->created_at))}}</td>
 
                     @if( $ticket->status === 'assigned')
                       <td><a href="{{route('executive.reply.ticket_id', ['ticket_id' => $ticket->ticket_id ])}}"><button class="btn btn-primary">REPLY</button></a></td>
