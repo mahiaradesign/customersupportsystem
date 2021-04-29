@@ -3,6 +3,8 @@ namespace App\Http\Middleware;
 use App\Models\User;
 use Closure;
 use Auth;
+use DB;
+use App\Models\executive;
 use Cache;
 use Carbon\Carbon;
 class ActivityByUser
@@ -14,6 +16,12 @@ class ActivityByUser
             Cache::put('user-is-online-' . Auth::user()->id, true, $expiresAt);
             // last seen
             User::where('id', Auth::user()->id)->update(['last_seen' => (new \DateTime())->format("Y-m-d H:i:s")]);
+            $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
+            foreach($exec_data as $exec)
+            if(Cache::has('user-is-online-' . $exec->id))
+                $que=DB::table('executive')->where('executive_id','=',$exec->id)->update(['status'=>'online']);
+            else
+                $que=DB::table('executive')->where('executive_id','=',$exec->id)->update(['status'=>'offline']);
         }
         return $next($request);
     }

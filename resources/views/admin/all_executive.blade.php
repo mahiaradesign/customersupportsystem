@@ -37,7 +37,11 @@
                 <td>{{$eachdata->position}}</td>
 
                 {{-- Showing Status of executive  --}}
+                @if(Cache::get('user-is-online-' . $eachdata->id))
                 <td class="online">{{$eachdata->status}}</td>
+                @else
+                <td class="offline">{{$eachdata->status}}</td>
+                @endif
 
                 <td>{{ \Carbon\Carbon::parse($eachdata->last_seen)->diffForHumans() }}</td>
                 
