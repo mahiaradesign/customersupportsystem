@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\tickets;
 use App\Models\executive;
 use App\Mail\QueryMail;
+use Auth;
 use Illuminate\Support\Facades\Mail;
 
 class TicketsController extends Controller
@@ -93,5 +94,37 @@ class TicketsController extends Controller
         }
         return back()->with('fail', 'Something went Wrong!!!');
     
+    }
+    public static function assign_waiting_task()
+    {
+        // Checking for waiting status 
+        if(tickets::where('status',"waiting")->count()>0)
+        {
+            $max_task_at_a_time=5;
+            $logged_exec=executive::where('executive_id',Auth::user()->id)->first();//getting logged in user datails to get his qhery pending
+            $pending_tasks=$logged_exec->query_pending;
+            if($pending_tasks=="none")
+                $count=0;
+            else
+                $count=count(explode(',', $pending_tasks));
+
+            $unassigned_task_data=tickets::where('status',"waiting")->orderBy('created_at')->take($max_task_at_a_time-$count)->get();//getting some unassigned queries
+            $exec_new_assigned_task=$logged_exec->query_assigned;
+            $exec_new_pending_task=$logged_exec->query_pending;
+            foreach ($unassigned_task_data as $each_task) 
+            {
+                if($exec_new_assigned_task=="none")
+                    $exec_new_assigned_task=$each_task->ticket_id;
+                else
+                    $exec_new_assigned_task.=",".$each_task->ticket_id;
+                if($exec_new_pending_task=="none")
+                    $exec_new_pending_task=$each_task->ticket_id;
+                else
+                    $exec_new_pending_task.=",".$each_task->ticket_id;
+                    
+                tickets::where('id',$each_task->id)->update(['assigned_to'=>$logged_exec->executive_id,'status'=>'assigned']);//updating query status to assigned
+            }
+            executive::where('id',$logged_exec->id)->update(['query_assigned'=>$exec_new_assigned_task,'query_pending'=>$exec_new_pending_task]);//adding those queries to executive query assiged and query pending colums
+        }
     }
 }

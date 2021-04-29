@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TicketsController;
 use DB;
 use Cache;
 use App\Providers\RouteServiceProvider;
@@ -37,6 +38,8 @@ class LoginController extends Controller
             if (Auth::user()->role == 'admin'){
                 return redirect::to('/admin');
             } else{
+                // When user logins it looks for unassignd tasks by assign_waiting_task() this function in Ticket controller
+                TicketsController::assign_waiting_task();
                 return Redirect::to('/home');
             }
             
