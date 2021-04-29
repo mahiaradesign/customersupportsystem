@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -65,8 +66,8 @@ class AdminController extends Controller
             return view('/admin');
         }
     }
-    // public function all_executive(){
-    //     $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
-    //     return view('admin/all_executive')->with('exec_data',$exec_data);
-    // }
+    public function allExec(){
+        $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
+        return view('admin/all_executive')->with('exec_data',$exec_data);
+    }
 }

@@ -13,6 +13,7 @@
               <th>Email</th>
               <th>Position</th>
               <th>Status</th>
+              <th>Last Seen</th>
               <th>Rating</th>
               <th>Query Assigned</th>
               <th>Query Solved</th>
@@ -36,12 +37,10 @@
                 <td>{{$eachdata->position}}</td>
 
                 {{-- Showing Status of executive  --}}
-                @if($eachdata->status=="online")
-                    <td class="online">{{$eachdata->status}}</td>
-                @else
-                  <td class="offline">{{$eachdata->status}}</td>
-                @endif
+                <td class="online">{{$eachdata->status}}</td>
 
+                <td>{{ \Carbon\Carbon::parse($eachdata->last_seen)->diffForHumans() }}</td>
+                
                 {{-- Showing Rating  --}}
                 <td>{{number_format($eachdata->rating,2)}} <i class="fa fa-star star" aria-hidden="true"></i></td>
                 
