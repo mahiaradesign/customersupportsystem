@@ -21,6 +21,7 @@ class CreateTicketsTabele extends Migration
             $table->text('message',255);
             $table->integer('ticket_id');
             $table->integer('assigned_to')->nullable();
+            $table->string('query_transfer')->default('False');
             $table->string('status');
             $table->timestamps();
         });
