@@ -1,4 +1,4 @@
-@include('executive.executivehead', ['title' => "All Tasks",'autorefresh'=>30])
+@include('executive.executivehead', ['title' => "All Tasks",'autorefresh'=>90])
   <body>
     @include('executive.navbar')
     <div class="topline">

@@ -36,6 +36,9 @@ Route::get('/executive/assigned_tasks','HomeController@tasks' )->name('executive
 // Route for executive reply
 Route::get('/executive/reply/{ticket_id}', 'ResponsesController@reply')->name('executive.reply.ticket_id');
 
+Route::get('/executive/pass_query/{ticket_id}', 'TicketsController@pass_query')->name('executive.pass_query.ticket_id');
+
+
 // ROUTE FOR SENDING MAIL {use it to send mail from the executive to the author with ticket id = ticket_id} 
 // Use ticket_id from table 
 Route:: post('/executive/sendEmail/{ticket_id}','ResponsesController@sendEmail')->name('executive.sendEmail.ticket_id');

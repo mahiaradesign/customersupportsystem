@@ -127,4 +127,12 @@ class TicketsController extends Controller
             executive::where('id',$logged_exec->id)->update(['query_assigned'=>$exec_new_assigned_task,'query_pending'=>$exec_new_pending_task]);//adding those queries to executive query assiged and query pending colums
         }
     }
+    public function pass_query($ticket_id)
+    {
+        // write algo here...
+        // Make a extra column in executive for saving transferred queries name=query_transfer
+        // transfer it to senior and remove the ticket id from previous assigned executive  query_pending to query_transfer column
+        $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
+        return redirect('/executive/assigned_tasks')->with(['tickets'=>$tickets, 'success'=>'Issue is transferred Successfully']);
+    }
 }
