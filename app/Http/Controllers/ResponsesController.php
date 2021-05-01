@@ -22,7 +22,8 @@ class ResponsesController extends Controller
                     return back();
                 }
                 else{
-                    return view('executive.reply')->with('query_data',$query_data);
+                    $exec_position=executive::where('executive_id',Auth::user()->id)->pluck('position')->first();
+                    return view('executive.reply')->with(['query_data'=>$query_data,'exec_position'=>$exec_position]);
                 }
             }
             else
@@ -41,7 +42,7 @@ class ResponsesController extends Controller
             $to_user=tickets::where('ticket_id','=',$ticket_id)->first();
 
             $data = new response;
-            $data->from = Auth::user()->email;
+            $data->from = Auth::user()->id;
             $data->response = $request->reply_message;
             $data->to = $to_user->email;
             

@@ -22,7 +22,13 @@
                   <tr>
                     <td>#{{$ticket->ticket_id}}</td>
                     <td>{{$ticket->first_name}} {{$ticket->last_name}}</td>
-                    <td>{{substr($ticket->message,0,80).".....(more)"}}</td>
+                    <td>
+                    @if(strlen($ticket->message)>80)
+                      {{substr($ticket->message,0,80).".....(more)"}}
+                    @else
+                      {{$ticket->message}}
+                    @endif
+                    </td>
                     <td>{{date('d/m/y h:i a', strtotime($ticket->created_at))}}</td>
 
                     @if( $ticket->status === 'assigned')

@@ -51,8 +51,8 @@
                 <div class="eachinputbox full_input">
                 <i class="fa fa-users" aria-hidden="true"></i>
                     <select name="position">
-                      <option value="executive" selected>Junior</option>
-                      <option value="senior">Senior</option>
+                      <option value="Junior" selected>Junior</option>
+                      <option value="Senior">Senior</option>
                     </select>
                 </div>
               </div>

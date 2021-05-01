@@ -129,75 +129,45 @@ class TicketsController extends Controller
     }
     public function pass_query($ticket_id)
     {
-        // write algo here...
-        // Make a extra column in executive for saving transferred queries name=query_transfer
-        // transfer it to senior and remove the ticket id from previous assigned executive  query_pending to query_transfer column
-        $ticket_to_transfer= tickets::where('ticket_id','=',$ticket_id)->first(); //fetching the ticket details to be passed
-        $prev_alloted_exec_id = $ticket_to_transfer->assigned_to; //fetchin the executve id to whom it is currently alloted
-        $prev_alloted_exec = executive::where('executive_id','=',$prev_alloted_exec_id)->first(); //and then collecting info of the executive
-
-        // then getting the list of the query_assigned and $query_pending
-        $get_query_pending = $prev_alloted_exec->query_pending;
-        $get_query_assigned = $prev_alloted_exec->query_assigned;
-
-        //if the executive has only one query assigned then making if none 
-        // else g0ing through entire string and search the ticketid and remove it.  
-        if(count(explode(',',$get_query_assigned))==1){
-            $put_query_assigned="none";
-        }else{
-            $put_query_assigned="none";
-            foreach(explode(',',$get_query_assigned) as $assigned){
-                if ($assigned != $ticket_id){
-                    if($put_query_assigned=="none")
-                        $put_query_assigned=$assigned;
-                    else
-                        $put_query_assigned.=",".$assigned;
-                }
-            }
-        }
-
-        if(count(explode(',',$get_query_pending))==1){
-            $put_query_pending="none";
-        }else{
-            $put_query_pending="none";
-            foreach(explode(',',$get_query_pending) as $pending){
-                if ($pending != $ticket_id){
-                    if($put_query_pending=="none")
-                        $put_query_pending=$pending;
-                    else
-                        $put_query_pending.=",".$pending;
-                }
-            }
-        }
-
-        executive::where('executive_id','=',$prev_alloted_exec_id)->update(['query_assigned'=>$put_query_assigned, 'query_pending'=>$put_query_pending]);
-
         $senior_exec= executive::where('position','=','Senior')->get();
-        $select_se= executive::where('position','=','Senior')->first();
-        $lowest_count=count(explode(',',$select_se->query_pending));
-        foreach($senior_exec as $se){
-            if(count(explode(',',$se->query_pending))<$lowest_count){
-                $lowest_count= count(explode(',',$se->query_pending));
-                $select_se=$se;
-            }
+        if(count($senior_exec)>0)
+        {
+            $ticket_to_transfer= tickets::where('ticket_id','=',$ticket_id)->first(); //fetching the ticket details to be passed
+            $prev_alloted_exec_id = $ticket_to_transfer->assigned_to; //fetchin the executve id to whom it is currently alloted
+            $prev_alloted_exec = executive::where('executive_id','=',$prev_alloted_exec_id)->first(); //and then collecting info of the executive
+
+            $query_pending_arr = explode(',',$prev_alloted_exec->query_pending);
+            $query_transferred =$prev_alloted_exec->query_transferred;
+            array_splice($query_pending_arr,array_search($ticket_id,$query_pending_arr,TRUE),1);
+            if(count($query_pending_arr)==0)
+                $put_query_pending="none";
+            else
+                $put_query_pending=implode(",",$query_pending_arr);
+            if($query_transferred=="none")
+                $put_query_transferred=$ticket_id;
+            else
+                $put_query_transferred=$query_transferred.",".$ticket_id;
+            $select_se= executive::where('position','=','Senior')->orderByRaw('CHAR_LENGTH(query_pending)')->first();
+            $selected_se_q_assigned=$select_se->query_assigned;
+            $selected_se_q_pending=$select_se->query_pending;
+            if($selected_se_q_assigned=="none")
+                $selected_se_q_assigned=$ticket_id;
+            else
+                $selected_se_q_assigned.=",".$ticket_id;
+            if($selected_se_q_pending=="none")
+                $selected_se_q_pending=$ticket_id;
+            else
+                $selected_se_q_pending.=",".$ticket_id;
+            executive::where('executive_id','=',$prev_alloted_exec_id)->update(['query_pending'=>$put_query_pending, 'query_transferred'=>$put_query_transferred]);
+            executive::where('executive_id','=',$select_se->executive_id)->update(['query_pending'=>$selected_se_q_pending, 'query_assigned'=>$selected_se_q_assigned]);
+            tickets::where('ticket_id',$ticket_id)->update(['assigned_to'=>$select_se->executive_id,'status'=>'assigned','query_transfer'=>'True']);
+            $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
+            return redirect('/executive/assigned_tasks')->with(['tickets'=>$tickets,'success'=>'Issue is transferred Successfully']);
         }
-
-        $exec_new_assigned_task=$select_se->query_assigned;
-        $exec_new_pending_task=$select_se->query_pending;
-
-        if($exec_new_assigned_task=="none")
-            $exec_new_assigned_task=$ticket_id;
         else
-            $exec_new_assigned_task.=",".$ticket_id;
-        if($exec_new_pending_task=="none")
-            $exec_new_pending_task=$ticket_id;
-        else
-            $exec_new_pending_task.=",".$ticket_id;
-            
-        tickets::where('ticket_id',$ticket_id)->update(['assigned_to'=>$select_se->executive_id,'status'=>'assigned','query_transfer'=>'True']);
-        $select_se->update(['query_assigned'=>$exec_new_assigned_task,'query_pending'=>$exec_new_pending_task]);
-
-        $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
-        return redirect('/executive/assigned_tasks')->with(['tickets'=>$tickets, 'success'=>'Issue is transferred Successfully']);
+        {
+            $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
+            return redirect('/executive/assigned_tasks')->with(['tickets'=>$tickets, 'fail'=>'No Seniour Executive Found']);
+        }    
     }
 }

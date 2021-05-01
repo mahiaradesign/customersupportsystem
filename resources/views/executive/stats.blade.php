@@ -3,11 +3,11 @@
   $exec_id=Auth::user()->id;
   $exec_data= executive::where('executive_id',$exec_id)->first();
 
-  // Calculating the number of queries Assigned 
-  if($exec_data->query_assigned!="none")
-    $query_assigned=count(explode(',', $exec_data->query_assigned));
+  // Calculating the number of queries Sent to seniour 
+  if($exec_data->query_transferred!="none")
+    $query_transferred=count(explode(',', $exec_data->query_transferred));
   else
-    $query_assigned=0;
+    $query_transferred=0;
 
   // Calculating the number of queries pending 
   if($exec_data->query_pending!="none")
@@ -20,10 +20,7 @@
     $query_solved=count(explode(',', $exec_data->query_solved));
   else
     $query_solved=0;
-  
-  // Calculating the number of queries sent to seniour 
-  $query_sent=$query_assigned-($query_solved+$query_pending);
-  
+
 @endphp
 
 <div class="stats-box">
@@ -42,7 +39,7 @@
     </div>
     <div class="eachline">
       <p class="name">Issues Sent to SE:</p>
-      <p class="value">{{$query_sent}}</p>
+      <p class="value">{{$query_transferred}}</p>
     </div>
     <div class="eachline">
       <p class="name">Rating:</p>

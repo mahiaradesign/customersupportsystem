@@ -38,6 +38,7 @@ class AdminController extends Controller
     }
 
     public function storeExec(Request $request){
+        // return $request->position;
         if(Auth::user()->role == 'admin'){
             $que=User::create([
                 'name' => $request->name,
@@ -51,9 +52,6 @@ class AdminController extends Controller
                 $exec_data=executive::create([
                     'executive_id'=> $que->id,
                     'position' => $request->position,
-                    'query_assigned' => "none",
-                    'query_solved' => "none",
-                    'query_pending' => "none",
                 ]);
             }
             if($que&&$exec_data){

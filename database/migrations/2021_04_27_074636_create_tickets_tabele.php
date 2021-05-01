@@ -18,7 +18,7 @@ class CreateTicketsTabele extends Migration
             $table->string('first_name',50);
             $table->string('last_name');
             $table->string('email',100);
-            $table->text('message',255);
+            $table->text('message');
             $table->integer('ticket_id');
             $table->integer('assigned_to')->nullable();
             $table->string('query_transfer')->default('False');

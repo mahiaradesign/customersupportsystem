@@ -15,7 +15,7 @@ class CreateResponseTable extends Migration
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('from', 100);
+            $table->integer('from');
             $table->string('to',100);
             $table->string('response',250);
             $table->timestamps();
