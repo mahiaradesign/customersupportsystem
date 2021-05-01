@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\tickets;
 use App\Models\executive;
+use App\Models\User;
 use App\Mail\QueryMail;
+use App\Mail\PassQueryMail;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -47,7 +49,7 @@ class TicketsController extends Controller
                     $count=0;
                 else
                     $count=count(explode(',', $each_exec->query_pending));
-                if($count<$lowest_count && $count<=$max_task_at_a_time)
+                if($count<$lowest_count && $count<$max_task_at_a_time)
                 {
                     $lowestfound=true;
                     $lowest_count=$count;
@@ -161,6 +163,10 @@ class TicketsController extends Controller
             executive::where('executive_id','=',$prev_alloted_exec_id)->update(['query_pending'=>$put_query_pending, 'query_transferred'=>$put_query_transferred]);
             executive::where('executive_id','=',$select_se->executive_id)->update(['query_pending'=>$selected_se_q_pending, 'query_assigned'=>$selected_se_q_assigned]);
             tickets::where('ticket_id',$ticket_id)->update(['assigned_to'=>$select_se->executive_id,'status'=>'assigned','query_transfer'=>'True']);
+            $ticket=tickets::where('ticket_id',$ticket_id)->first();
+            $se=User::where('id',$select_se->executive_id)->first();
+            Mail::to($se->email)->send(new PassQueryMail($ticket,$se));
+            TicketsController::assign_waiting_task();
             $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
             return redirect('/executive/assigned_tasks')->with(['tickets'=>$tickets,'success'=>'Issue is transferred Successfully']);
         }

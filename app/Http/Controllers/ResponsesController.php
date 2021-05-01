@@ -9,6 +9,7 @@ use App\Models\tickets;
 use App\Models\response;
 use App\Models\executive;
 use Auth;
+use App\Http\Controllers\TicketsController;
 
 class ResponsesController extends Controller
 {
@@ -66,6 +67,7 @@ class ResponsesController extends Controller
                     $his_new_pending="none";
                 executive::where('executive_id',Auth::user()->id)->update(['query_solved' => $his_query_solved,'query_pending'=>$his_new_pending]);//updating query solved and query pending column of that executive
                 tickets::where('ticket_id','=',$ticket_id)->update(['status' => 'solved']);//updating status of query to solved
+                TicketsController::assign_waiting_task();
                 Mail::to($to_user->email)->send(new ResponseMail($request->reply_message, $ticket_id));
                 $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
 
