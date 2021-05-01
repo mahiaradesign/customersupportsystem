@@ -5,7 +5,10 @@
       <div class="title-button-box">
         <a href="/executive/assigned_tasks/"><button class="back"><i class="fa fa-angle-left" aria-hidden="true"></i> Back</button></a>
         <h1 class="main-title">Solve Issues</h1>
-        <a href="{{route('executive.pass_query.ticket_id', ['ticket_id' => $query_data->ticket_id ])}}"><button class="main-btn">Pass to Senior Executive <i class="fa fa-angle-double-right" aria-hidden="true"></i></button></a>
+        @php $exe= DB::table('executive')->where('executive_id',Auth::user()->id)->first(); @endphp
+        @if($exe->position == 'Junior')
+          <a href="{{route('executive.pass_query.ticket_id', ['ticket_id' => $query_data->ticket_id ])}}"><button class="main-btn">Pass to Senior Executive <i class="fa fa-angle-double-right" aria-hidden="true"></i></button></a>
+        @endif
       </div>
 
       {{-- Added the stats of executive --}}

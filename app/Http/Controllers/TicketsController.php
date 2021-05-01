@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\tickets;
 use App\Models\executive;
+use App\Models\User;
 use App\Mail\QueryMail;
+use App\Mail\PassQueryMail;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -196,6 +198,10 @@ class TicketsController extends Controller
             
         tickets::where('ticket_id',$ticket_id)->update(['assigned_to'=>$select_se->executive_id,'status'=>'assigned','query_transfer'=>'True']);
         $select_se->update(['query_assigned'=>$exec_new_assigned_task,'query_pending'=>$exec_new_pending_task]);
+
+        $ticket=tickets::where('ticket_id',$ticket_id)->first();
+        $se=User::where('id',$select_se->executive_id)->first();
+        Mail::to($se->email)->send(new PassQueryMail($ticket,$se));
 
         $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
         return redirect('/executive/assigned_tasks')->with(['tickets'=>$tickets, 'success'=>'Issue is transferred Successfully']);
