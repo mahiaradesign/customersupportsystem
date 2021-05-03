@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\tickets;
 
@@ -47,7 +48,13 @@ class HomeController extends Controller
     public function tasks(){
         if(Auth::user()->role=="executive"){
 
-            $tickets= tickets::where('assigned_to','=',Auth::user()->id)->get();
+            $tickets = tickets::where('assigned_to','=',Auth::user()->id)
+                                ->where('status','assigned')
+                                ->where(function ($query){
+                                    $query->where('assigned_to','=',Auth::user()->id)
+                                          ->whereBetween('updated_at', [Carbon::now()->subDay(), Carbon::now()]);
+                                })
+                                ->get();
 
             return view('/executive/assigned_tasks')->with('tickets',$tickets);
         }

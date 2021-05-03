@@ -19,9 +19,13 @@ Route::get('/', function () {
 
 // to visit the query page
 Route::get('/query', 'TicketsController@index');
+
+// to check the status of the query 
 Route::get('/status', function(){
     return view('status');
 });
+
+Route::post('/checkStatus', 'TicketsController@checkStatus')->name('check');
 
 // to submit the query and mail the query
 Route::post('/ticketSubmit','TicketsController@save');

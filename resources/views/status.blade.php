@@ -3,7 +3,7 @@
     <section class="status">
         <div class="formbox">
             <h3>Check Status of your Query</h3>
-            <form action="{{url('ticketSubmit')}}" method="POST" name="myForm">
+            <form action="{{route('check')}}" method="post" name="myForm">
                 @csrf
                 <div class="eachline">
                     <div class="eachinputbox full_input">
@@ -15,46 +15,57 @@
         </div>
 
         {{-- if found any data of that input  --}}
-        <div class="formbox resultbox">
-            <h3>Live Status</h3>
-            <div class="statusbox">
-                <div class="eachstatus">
-                    <p>Submitted</p>
+        @if($ticket=Session::get('success'))
+            <div class="formbox resultbox">
+                <h3>Live Status</h3>
+                <div class="statusbox">
+                    <div class="eachstatus">
+                        <p>Submitted</p>
+                    </div>
+                    <span class="bg"></span>
+                    <div class="eachstatus">
+                        <p>Assigned</p>
+                    </div>
+                    <span class="bg"></span>
+                    <div class="eachstatus">
+                        <p>Solved</p>
+                    </div>
                 </div>
-                <span class="bg"></span>
-                <div class="eachstatus">
-                    <p>Assigned</p>
+                @php
+                    $exec= DB::table('users')->where('id',$ticket->assigned_to)->first();
+                @endphp
+                <div class="details">
+                    <div class="eachline">
+                        <p class="name">Ticket ID :</p>
+                        <p class="value main">#{{$ticket->ticket_id}}</p>
+                    </div>
+                    <div class="eachline">
+                        <p class="name">Messsage :</p>
+                        <p class="value message">{{$ticket->message}}</p>
+                    </div>
+                    @if($ticket->status =="waiting")
+                        <div class="eachline">
+                            <p class="name">Status :</p>
+                            <p class="value">No Executive Assigned</p>
+                        </div>
+                    @else
+                        <div class="eachline">
+                            <p class="name">Status :</p>
+                            <p class="value">{{$ticket->status}}</p>
+                        </div>
+                        <div class="eachline">
+                            <p class="name">Assigned To :</p>
+                            <p class="value">{{$exec->name}}</p>
+                        </div>
+                    @endif
+                    <div class="eachline">
+                        <p class="name">Created At :</p>
+                        <p class="value">{{$ticket->created_at}}</p>
+                    </div>
                 </div>
-                <span class="bg"></span>
-                <div class="eachstatus">
-                    <p>Solved</p>
-                </div>
-            </div>
-            <div class="details">
-                <div class="eachline">
-                    <p class="name">Ticket ID :</p>
-                    <p class="value main">#12345678</p>
-                </div>
-                <div class="eachline">
-                    <p class="name">Messsage :</p>
-                    <p class="value message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                </div>
-                <div class="eachline">
-                    <p class="name">Status :</p>
-                    <p class="value">Assigned</p>
-                </div>
-                <div class="eachline">
-                    <p class="name">Assigned To :</p>
-                    <p class="value">Rowdy Rathore</p>
-                </div>
-                <div class="eachline">
-                    <p class="name">Created At :</p>
-                    <p class="value">12/02/2020 12:30 PM</p>
-                </div>
-            </div>
                 <script>
                     // just assign the status here
-                    const status="assigned";
+                    const status={!! json_encode($ticket->status) !!};
                     const status_arr=["waiting","assigned","solved"]
                     const status_box=document.querySelectorAll(".eachstatus")
                     const status_line=document.querySelectorAll(".bg")
@@ -66,7 +77,19 @@
                             status_line[i-1].classList.add("active")
                     }
                 </script>
+            </div>
+        @endif
+
+        {{-- if ticket not found --}}
+        @if($msg=Session::get('msg'))
+        <div class="formbox resultbox">
+            <div class="details">
+                <div class="alert alert-danger" role="alert">
+                    {{$msg}}
+                </div>
+            </div>
         </div>
+        @endif
         {{-- End if here  --}}
 
     </section>

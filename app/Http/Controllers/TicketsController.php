@@ -176,4 +176,14 @@ class TicketsController extends Controller
             return redirect('/executive/assigned_tasks')->with(['tickets'=>$tickets, 'fail'=>'No Seniour Executive Found']);
         }    
     }
+
+    public function checkStatus(Request $request){
+        $ticket_id = $request->ticket_id;
+        $ticket = tickets::where('ticket_id','=',$ticket_id)->first();
+        if($ticket){
+            return back()->with('success',$ticket);
+        }else
+            return back()->with('msg','No such Ticket Found. Please recheck the Ticket #'); 
+        
+    }
 }
