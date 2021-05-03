@@ -60,12 +60,11 @@
                     @endif
                     <div class="eachline">
                         <p class="name">Created At :</p>
-                        <p class="value">{{$ticket->created_at}}</p>
+                        <p class="value">{{date('d M y h:i A', strtotime($ticket->created_at))}}</p>
                     </div>
                 </div>
                 <script>
-                    // just assign the status here
-                    const status={!! json_encode($ticket->status) !!};
+                    const status="{{$ticket->status}}";
                     const status_arr=["waiting","assigned","solved"]
                     const status_box=document.querySelectorAll(".eachstatus")
                     const status_line=document.querySelectorAll(".bg")

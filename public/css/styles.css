@@ -316,7 +316,7 @@ span.bg
 }
 .eachline p.value.message
 {
-  width: auto;
+  width: 100%;
   white-space: normal;
   height: 12rem;
   overflow-y: scroll;
