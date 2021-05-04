@@ -20,7 +20,7 @@
                 @foreach($tickets as $ticket)
                     @php $dt = "#".$ticket->ticket_id; @endphp
                   <tr>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target={{$dt}}>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="{{$dt}}">
                         #{{$ticket->ticket_id}}
                       </button></td>
                     <td>{{$ticket->first_name}} {{$ticket->last_name}}</td>
@@ -53,13 +53,13 @@
                         <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Ticket ID : #{{$ticket->ticket_id}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             </div>
                             <div class="modal-body">
-                                <div class="formbox resultbox">
+                                <div class="ticket-modal">
                                     <h3>Live Status</h3>
                                     <div class="statusbox">
                                         <div class="eachstatus">
@@ -112,7 +112,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                    <script>
+                                     <script>
                                         const status="{{$ticket->status}}";
                                         const status_arr=["waiting","assigned","solved"]
                                         const status_box=document.querySelectorAll(".eachstatus")
@@ -144,6 +144,4 @@
             </div>
           @endif
         </div>
-    <script src="/js/admin/all_executive.js"></script>
-</body>
-</html>
+@include('admin.adminend')
