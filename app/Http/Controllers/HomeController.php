@@ -50,7 +50,7 @@ class HomeController extends Controller
 
             $tickets = tickets::where('assigned_to','=',Auth::user()->id)
                                 ->where('status','assigned')
-                                ->where(function ($query){
+                                ->orWhere(function ($query){
                                     $query->where('assigned_to','=',Auth::user()->id)
                                           ->whereBetween('updated_at', [Carbon::now()->subDay(), Carbon::now()]);
                                 })

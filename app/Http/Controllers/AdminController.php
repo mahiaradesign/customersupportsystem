@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\executive;
+use App\Models\tickets;
 
 class AdminController extends Controller
 {
@@ -65,7 +66,18 @@ class AdminController extends Controller
         }
     }
     public function allExec(){
-        $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
-        return view('admin/all_executive')->with('exec_data',$exec_data);
+        if(Auth::user()->role == 'admin'){
+            $exec_data= executive::join('users', 'executive.executive_id', '=', 'users.id')->get();
+            return view('admin/all_executive')->with('exec_data',$exec_data);
+        }
+        return back();
+    }
+
+    public function tickets(){
+        if(Auth::user()->role == 'admin'){
+            $tickets = tickets::all();
+            return view('admin.all_tickets')->with('tickets', $tickets);
+        }
+        return back();
     }
 }

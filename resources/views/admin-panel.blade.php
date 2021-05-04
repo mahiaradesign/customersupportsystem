@@ -23,6 +23,7 @@
     <div class="redirect_link">
         <h1>Admin Panel</h1>
         <a href="{{url('admin/add_register')}}">Add Executive</a>
+        <a href="{{url('admin/all_tickets')}}">All Tickets</a>
         <a href="/admin/all_executive">All Executive</a>
         <a href="{{route('logout')}}">Logout</a>
     </div>
@@ -32,6 +33,6 @@
         document.querySelector("#myModal button").addEventListener("click",function(){myModal.hide()})
         setTimeout(function(){
             myModal.show()
-        },1000);
+        },10);
     </script>
 @include('includes.htmlend')

@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::post('/admin/add_register', 'AdminController@storeExec')->name('add_exe');
 Route::get('/admin/all_executive', 'AdminController@allExec');
 
+Route::get('/admin/all_tickets', 'AdminController@tickets');
 
 Auth::routes();
 

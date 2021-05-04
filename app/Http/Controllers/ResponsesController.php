@@ -46,10 +46,10 @@ class ResponsesController extends Controller
             $data->from = Auth::user()->id;
             $data->response = $request->reply_message;
             $data->to = $to_user->email;
+            $data->ticket_id =$ticket_id;
             
             $que = $data->save();
 
-            
 
             if($que){
                 $exec_data=executive::where('executive_id',Auth::user()->id)->first();

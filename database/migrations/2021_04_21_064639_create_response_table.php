@@ -17,6 +17,7 @@ class CreateResponseTable extends Migration
             $table->increments('id');
             $table->integer('from');
             $table->string('to',100);
+            $table->integer('ticket_id')->nullable();
             $table->string('response',250);
             $table->timestamps();
         });
