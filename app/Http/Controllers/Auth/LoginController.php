@@ -89,6 +89,6 @@ class LoginController extends Controller
             $exec=DB::table('executive')->where('executive_id','=',Auth::user()->id)->update(['status'=>'offline']);
         }
         Auth::logout();
-        return view('auth.login');
+        return redirect('/login');
     }
 }

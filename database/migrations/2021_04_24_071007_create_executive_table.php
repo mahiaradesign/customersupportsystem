@@ -18,7 +18,7 @@ class CreateExecutiveTable extends Migration
             $table->integer('executive_id');
             $table->string('position',10);
             $table->string('status',10)->default('offline');
-            $table->double('rating',3, 2)->default(4);
+            $table->text('rating')->default('none');
             $table->text('query_assigned')->default('none');
             $table->text('query_solved')->default('none');
             $table->text('query_pending')->default('none');

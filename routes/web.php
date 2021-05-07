@@ -68,3 +68,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/sendFeedbackLink/{ticket_id}', 'FeedbackController@send')->name('sendFeedbackLink.ticket_id');
+
+Route::get('/feedback/{ticket_id}', 'FeedbackController@index')->name('feedback.ticket_id');
+
+Route::post('/feedback/submit', 'FeedbackController@store')->name('feedback.submit');

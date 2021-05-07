@@ -43,6 +43,6 @@
     </div>
     <div class="eachline">
       <p class="name">Rating:</p>
-      <p class="value">{{number_format($exec_data->rating,1)}} <i class="fa fa-star" aria-hidden="true"></i></p>
+      <p class="value">0 <i class="fa fa-star" aria-hidden="true"></i></p>
     </div>
   </div>

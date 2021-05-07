@@ -35,16 +35,7 @@ class HomeController extends Controller
             return redirect()->back();        }
     }
     
-
-    // public function index(){
-    //     if(Auth::check()){
-    //         return view('home');   
-    //     }
-    //     else{
-    //         return redirect('/login');
-    //     }
-        
-    // }
+    
     public function tasks(){
         if(Auth::user()->role=="executive"){
 

@@ -15,6 +15,7 @@
                 <th>Message</th>
                 <th>Date & Time</th>
                 <th>Respond</th>
+                <th>Feedback</th>
               </thead>
               <tbody>
                 {{-- tickets that are asigned to logged in execuitve is shown here  --}}
@@ -33,8 +34,16 @@
 
                     @if( $ticket->status === 'assigned')
                       <td><a href="{{route('executive.reply.ticket_id', ['ticket_id' => $ticket->ticket_id ])}}"><button class="btn btn-primary">REPLY</button></a></td>
+                      <td>NOT YET SOLVED</td>
                     @else
                       <td><button class="btn btn-success" disabled>SOLVED</button></td>
+                      @php $fdbk = DB::table('feedback')->where('ticket_id', $ticket->ticket_id)->first(); @endphp
+                      @if (! $fdbk)
+                        <td><a href="{{route('sendFeedbackLink.ticket_id', ['ticket_id' => $ticket->ticket_id ])}}" class="btn btn-primary">ASK</a></td>
+                      @else
+                        <td><button class="btn btn-success" disabled>RECORDED</button></td>
+                      @endif
+                      
                     @endif
 
                   </tr>

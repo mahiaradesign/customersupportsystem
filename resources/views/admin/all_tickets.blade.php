@@ -14,6 +14,7 @@
                 <th>Date & Time</th>
                 <th>Status</th>
                 <th>Executive</th>
+                <th>Resolved In</th>
               </thead>
               <tbody>
                 {{-- tickets that are asigned to logged in execuitve is shown here  --}}
@@ -43,15 +44,26 @@
                             <td><button class="btn btn-warning" disabled>ASSIGNED</button></td>
                             @if($exe->name)
                                 <td>{{$exe->name}}</td>
+                                <td>Not Resolved</td>
                             @endif
                         @elseif($ticket->status === 'solved')
                             <td><button class="btn btn-success" disabled>SOLVED</button></td>
                             @if($exe->name)
                                 <td>{{$exe->name}}</td>
+                                <td>
+                                    @php
+                                        $response = DB::table('responses')->where('ticket_id',$ticket->ticket_id)->first();
+                                        $start = Carbon\Carbon::parse($ticket->created_at);
+                                        $end = Carbon\Carbon::parse($response->created_at);
+                                        $hours = $end->diffForHumans($start);
+                                        echo trim(trim($hours,'after'), 'before');
+                                    @endphp
+                                </td>
                             @endif
                         @else
                             <td><button class="btn btn-danger" disabled>WAITING</button></td>
                             <td>Not Yet Assigned</td>
+                            <td>Not Resolved</td>
                         @endif
 
                         <!-- Modal -->
@@ -126,6 +138,7 @@
                             </div>
                             </div>
                         </div>
+
                     </tr>
                 @endforeach
               </tbody>
