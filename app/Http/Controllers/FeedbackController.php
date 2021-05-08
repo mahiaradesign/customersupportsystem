@@ -19,14 +19,11 @@ class FeedbackController extends Controller
         $fdbk = feedbacks::where('ticket_id','=', $ticket_id)->first();
 
         // also need to check if feedback already given.
-        if(Auth::check()){
-            if(Auth::user()->email == $ticket->email){
-                if(!$fdbk)
-                    return view('feedback_temp')-> with('ticket', $ticket);
-                else
-                    return redirect('')->with('already_fdbk', 'You have already Given Feedback to this Ticket.' );
-            }
-        }
+        if(!$fdbk)
+            return view('feedback_temp')-> with('ticket', $ticket);
+        else
+            return redirect('')->with('already_fdbk', 'You have already Given Feedback to this Ticket.' );
+        
         return redirect('/login');
     }
 
