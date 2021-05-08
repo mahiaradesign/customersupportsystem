@@ -17,6 +17,7 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->integer('ticket_id');
             $table->string('fdbk_msg');
+            $table->integer('rating');
             $table->timestamps();
         });
     }

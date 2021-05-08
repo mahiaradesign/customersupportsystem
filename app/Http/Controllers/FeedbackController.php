@@ -15,14 +15,17 @@ class FeedbackController extends Controller
 {
     //
     public function index($ticket_id){
-        $ticket = tickets::where('ticket_id','=', $ticket_id)->get();
+        $ticket = tickets::where('ticket_id','=', $ticket_id)->first();
         $fdbk = feedbacks::where('ticket_id','=', $ticket_id)->first();
 
-        if(!$fdbk)
-            return view('feedback_temp')-> with('ticket', $ticket);
+        if(!$fdbk){ 
+            if($ticket->status == "solved")
+                return view('feedback_temp')-> with('ticket', $ticket);
+            else
+                return redirect('')->with('already_fdbk', 'Wait for ticket to be solved!!!' );
+        }
         else
-            return redirect('')->with('already_fdbk', 'You have already Given Feedback to this Ticket.' );
-        return redirect('/login');
+            return redirect('')->with('already_fdbk', 'Feedback is already available for this Ticket.' );
     }
 
     public function send($ticket_id){
@@ -35,6 +38,7 @@ class FeedbackController extends Controller
         $data = new feedbacks;
         $data->ticket_id = $request->ticket_id;
         $data->fdbk_msg = $request->feedback;
+        $data->rating =$request->rating
 
         $rating = $request->rating;
 

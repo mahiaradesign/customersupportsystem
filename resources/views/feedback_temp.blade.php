@@ -7,21 +7,21 @@
         <div class="formbox">
             <h3>FEEDBACK FORM</h3>
 
-            @if(count($ticket)==1)
-            @foreach ($ticket as $tick)
+            @if($ticket)
+            {{-- @foreach ($ticket as $tick) --}}
                 <form action="{{route('feedback.submit')}}" method="POST" name="myForm">
                     @csrf
                     <div class="eachline">
                         <p class="name">Ticket ID</p>
-                        <p class="value">{{$tick->ticket_id}}</p>
-                        <input type="hidden" name="ticket_id" value={{ $tick->ticket_id }}>
+                        <p class="value">{{$ticket->ticket_id}}</p>
+                        <input type="hidden" name="ticket_id" value={{ $ticket->ticket_id }}>
                     </div>
                     <div class="eachline mail">
                         <p class="name">Customer Email</p>
-                        <p class="value">{{$tick->email}}</p>
+                        <p class="value">{{$ticket->email}}</p>
                     </div>
                     @php
-                        $exec = DB::table('users')->where('id',$tick->assigned_to)->first();    
+                        $exec = DB::table('users')->where('id',$ticket->assigned_to)->first();    
                     @endphp
 
                     <div class="eachline mail">
@@ -48,7 +48,7 @@
                     </div>
                     <button type="submit" name="feedbackSubmit" class="primary-btn">SEND FEEDBACK</button>
                 </form>
-                @endforeach
+                {{-- @endforeach --}}
             @else  
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                     <strong>Either You are looking for wrong Ticket ID or you have already given Feedback for this Ticket!!! </strong>

@@ -128,6 +128,32 @@
                                                         <p class="value message">No Response Yet</p>
                                                     @endif
                                                 </div>
+
+                                                @php $fdbk = DB::table('feedback')->where('ticket_id',$ticket->ticket_id)->first(); @endphp
+                                                <div class="eachline">
+                                                    <p class="name">Feedback :</p>
+                                                    @if($fdbk)
+                                                        <p class="value message">{{$fdbk->fdbk_msg}}</p>
+                                                    @else
+                                                        <p class="value message">No Feedback Yet</p>
+                                                    @endif
+                                                </div>
+                                                <div class="eachline">
+                                                    <p class="name">Feedback :</p>
+                                                    @if($fdbk)
+                                                        <input type="hidden" name="rating" value={{$fdbk->rating}} id="rating_value">
+                                                        <div class="starbox">
+                                                            @for($i=0;$i<$fdbk->rating;$i++)
+                                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                                            @endfor
+                                                            @for($i=0;$i<(5-$fdbk->rating);$i++)
+                                                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                                            @endfor
+                                                        </div>
+                                                    @else
+                                                        <p class="value message">Not Rated</p>
+                                                    @endif
+                                                </div>
                                             @endif
                                         </div>
                                     </div>
