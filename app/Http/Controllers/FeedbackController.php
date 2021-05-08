@@ -18,15 +18,11 @@ class FeedbackController extends Controller
         $ticket = tickets::where('ticket_id','=', $ticket_id)->get();
         $fdbk = feedbacks::where('ticket_id','=', $ticket_id)->first();
 
-        // also need to check if feedback already given.
-        if(Auth::check()){
-            if(Auth::user()->email == $ticket->email){
-                if(!$fdbk)
-                    return view('feedback_temp')-> with('ticket', $ticket);
-                else
-                    return redirect('')->with('already_fdbk', 'You have already Given Feedback to this Ticket.' );
-            }
-        }
+        if(!$fdbk)
+            return view('feedback_temp')-> with('ticket', $ticket);
+        else
+            return redirect('')->with('already_fdbk', 'You have already Given Feedback to this Ticket.' );
+
         return redirect('/login');
     }
 
@@ -37,7 +33,6 @@ class FeedbackController extends Controller
     }
 
     public function store(Request $request){
-
         $data = new feedbacks;
         $data->ticket_id = $request->ticket_id;
         $data->fdbk_msg = $request->feedback;
@@ -49,13 +44,12 @@ class FeedbackController extends Controller
         $rating_exec = $exec->rating;
 
         $que = $data->save();
-
-        if($que){
+        
+        if($que && $rating!=0 && $rating<=5){
             if($rating_exec == 'none')
                 $rating_exec = $rating;
             else
                 $rating_exec.=",".$rating;
-
             $exec = executive::where('executive_id','=',$ticket->assigned_to)->update(['rating' => $rating_exec]);
             return redirect('')->with('fdbk_success', 'Thanks For giving the feedback!!!');
         }

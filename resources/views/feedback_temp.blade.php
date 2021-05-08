@@ -1,8 +1,8 @@
 @include('includes.htmlhead')
 @include('includes.navbar')
-    <section class="query">
+    <section class="query feedback">
         <div class="imgbox">
-            <img src="/images/hero_mail.svg" alt="mail-img">
+            <img src="/images/review.png" alt="mail-img">
         </div>
         <div class="formbox">
             <h3>FEEDBACK FORM</h3>
@@ -12,28 +12,21 @@
                 <form action="{{route('feedback.submit')}}" method="POST" name="myForm">
                     @csrf
                     <div class="eachline">
-                        <p>Ticket ID</p>
-                        <div class="eachinputbox full_input">
-                            <input type="number" class="full_input" name="ticket_id" value={{ $tick->ticket_id }} readonly>
-                        </div>
+                        <p class="name">Ticket ID</p>
+                        <p class="value">{{$tick->ticket_id}}</p>
+                        <input type="hidden" name="ticket_id" value={{ $tick->ticket_id }}>
                     </div>
                     <div class="eachline mail">
-                        <p>Customer Email</p>
-                        <div class="eachinputbox full_input">
-                            <input type="email" class="full_input" name="email" placeholder="Email" value={{ $tick->email }} readonly>
-                            <span class="error" name="e_error"></span>
-                        </div>
+                        <p class="name">Customer Email</p>
+                        <p class="value">{{$tick->email}}</p>
                     </div>
                     @php
                         $exec = DB::table('users')->where('id',$tick->assigned_to)->first();    
                     @endphp
 
                     <div class="eachline mail">
-                        <p>Executive Assigned</p>
-                        <div class="eachinputbox full_input">
-                            <input type="text" class="full_input" name="exec" placeholder="Executive name" value={{ $exec->name }} readonly>
-                            <span class="error" name="e_error"></span>
-                        </div>
+                        <p class="name">Executive Assigned</p>
+                        <p class="value">{{$exec->name}}</p>
                     </div>
 
                     <div class="eachline">
@@ -42,13 +35,17 @@
                             <span class="error" name="m_error"></span>
                         </div>
                     </div>
-                    <div class="eachline">
-                        <div class="eachinputbox full_input">
-                            <input name="rating" placeholder="How much will u rate from 5?" required>
-                            <span class="error" name="m_error"></span>
+                    <div class="eachline rating-box">
+                        <p>Rate your experience with us:</p>
+                        <input type="hidden" name="rating" value="0" id="rating_value">
+                        <div class="starbox">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
                         </div>
                     </div>
-
                     <button type="submit" name="feedbackSubmit" class="primary-btn">SEND FEEDBACK</button>
                 </form>
                 @endforeach
@@ -60,7 +57,7 @@
             @endif
         </div>
     </section>
-    <script src="/js/query.js"></script>
+    <script src="/js/feedback.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 @include('includes.footer')
 @include('includes.htmlend')

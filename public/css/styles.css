@@ -225,6 +225,41 @@ nav {
   border-radius: 0.2rem;
 }
 
+/* Feedback Page */
+.feedback .formbox .eachline p.name{
+    min-width: 9rem;
+    font-size: 1rem;
+}
+.feedback .formbox .eachline p.value{
+    font-size: 1rem;
+    color: grey;
+    margin: 0;
+    overflow: hidden;
+}
+.rating-box{
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.rating-box p{
+    margin-bottom:0.5rem;
+}
+.starbox
+{
+    font-size: 2.3rem;
+    display: flex;
+    align-items: center;
+    color: #ffeb3b;
+}
+.starbox i
+{
+    margin: 0 0.5rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.starbox i:hover{
+        transform: rotate(-15deg);
+}
+/* Feedback Page Ends Here  */
 
 /* QUERY SECTION  */
 .status
@@ -549,6 +584,10 @@ footer .copyright {
     min-width: auto;
     padding: 0;
     border: none;
+  }
+  .feedback .formbox .eachline{
+    flex-direction: column;
+    align-items: flex-start;
   }
   nav .searchbox {
     width: 100%;

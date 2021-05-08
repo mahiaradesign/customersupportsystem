@@ -20,6 +20,17 @@
     $query_solved=count(explode(',', $exec_data->query_solved));
   else
     $query_solved=0;
+  if($exec_data->rating!="none")
+  {
+    $rating_arr=explode(',', $exec_data->rating);
+    $sum=0;
+    foreach ($rating_arr as $each_rating) {
+      $sum+=$each_rating;
+    }
+    $rating=$sum/count($rating_arr);
+  }
+  else
+    $rating=0;
 
 @endphp
 
@@ -43,6 +54,6 @@
     </div>
     <div class="eachline">
       <p class="name">Rating:</p>
-      <p class="value">0 <i class="fa fa-star" aria-hidden="true"></i></p>
+      <p class="value">{{number_format($rating,1)}} <i class="fa fa-star" aria-hidden="true"></i></p>
     </div>
   </div>

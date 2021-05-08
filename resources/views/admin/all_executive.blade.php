@@ -46,7 +46,20 @@
                 <td>{{ \Carbon\Carbon::parse($eachdata->last_seen)->diffForHumans() }}</td>
                 
                 {{-- Showing Rating  --}}
-                <td>{{number_format($eachdata->rating,2)}} <i class="fa fa-star star" aria-hidden="true"></i></td>
+                <td style="min-width:5rem">@php
+                    if($eachdata->rating!="none")
+                    {
+                      $rating_arr=explode(',', $eachdata->rating);
+                      $sum=0;
+                      foreach ($rating_arr as $each_rating) {
+                        $sum+=$each_rating;
+                      }
+                      $rating=$sum/count($rating_arr);
+                      echo number_format($rating,2);
+                    }
+                    else
+                      echo 0;
+                @endphp <i class="fa fa-star star" aria-hidden="true"></i></td>
                 
                 {{-- Showing Query Assigned  --}}
                 <td>

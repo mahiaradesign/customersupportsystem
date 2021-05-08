@@ -363,7 +363,7 @@ nav .links a
 {
   display: flex;
     justify-content: space-between;
-    margin: 2rem 10rem 0;
+    margin: 5rem 10rem 0;
     align-items: flex-end;
 }
 .main-title
