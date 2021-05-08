@@ -22,7 +22,6 @@ class FeedbackController extends Controller
             return view('feedback_temp')-> with('ticket', $ticket);
         else
             return redirect('')->with('already_fdbk', 'You have already Given Feedback to this Ticket.' );
-
         return redirect('/login');
     }
 
