@@ -38,9 +38,16 @@ class LoginController extends Controller
             if (Auth::user()->role == 'admin'){
                 return redirect::to('/admin');
             } else{
-                // When user logins it looks for unassignd tasks by assign_waiting_task() this function in Ticket controller
-                TicketsController::assign_waiting_task();
-                return Redirect::to('/home');
+                $exec = executive::where('executive_id','=', Auth::user()->id)->first();
+                if($exec->active == 1){
+                    // When user logins it looks for unassignd tasks by assign_waiting_task() this function in Ticket controller
+                    TicketsController::assign_waiting_task();
+                    return Redirect::to('/home');
+                }
+                else{
+                    Auth::logout();
+                    return redirect('/')->with('inactive','Sorry your account is blocked');
+                }
             }
             
         }

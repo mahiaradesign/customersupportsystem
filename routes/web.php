@@ -73,3 +73,5 @@ Route::get('/sendFeedbackLink/{ticket_id}', 'FeedbackController@send')->name('se
 Route::get('/feedback/{ticket_id}', 'FeedbackController@index')->name('feedback.ticket_id');
 
 Route::post('/feedback/submit', 'FeedbackController@store')->name('feedback.submit');
+
+Route::get('/make_active_change/{exec_id}', 'AdminController@make_active_change')->name('make_active_change.exec_id');

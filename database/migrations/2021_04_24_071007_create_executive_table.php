@@ -23,6 +23,7 @@ class CreateExecutiveTable extends Migration
             $table->text('query_solved')->default('none');
             $table->text('query_pending')->default('none');
             $table->text('query_transferred')->default('none');
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }

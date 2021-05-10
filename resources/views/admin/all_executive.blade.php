@@ -19,6 +19,7 @@
               <th>Query Solved</th>
               <th>Query Pending</th>
               <th>Joined</th>
+              <th>Active Status</th>
             </thead>
             <tbody>
             @foreach ($exec_data as $eachdata)
@@ -93,6 +94,13 @@
 
                 {{-- Showing Join Date  --}}
                 <td>{{date('d-m-Y h:i a', strtotime($eachdata->created_at))}}</td> 
+                <td><a href="{{route('make_active_change.exec_id', ['exec_id'=>$eachdata->id])}}" 
+                @if($eachdata->active == 1)
+                class="btn btn-success">Active</a>
+                @else
+                class="btn btn-danger">Inactive</a>
+                @endif
+                </td>
               </tr>
             @endforeach
             </tbody>

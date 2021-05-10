@@ -80,4 +80,13 @@ class AdminController extends Controller
         }
         return back();
     }
+    public function make_active_change($exec_id){
+        $exec=executive::where('executive_id','=',$exec_id)->first();
+        if ($exec->active == 1){
+            executive::where('executive_id','=',$exec_id)->update(['active'=>0]);
+        }else{
+            executive::where('executive_id','=',$exec_id)->update(['active'=>1]);
+        }
+        return redirect()->back();
+    }
 }

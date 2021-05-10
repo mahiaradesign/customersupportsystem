@@ -21,6 +21,13 @@
         <i class="fa fa-times close" aria-hidden="true"></i>
     </div>
 @endif
+@if($message=Session::get('inactive'))
+    <div class="popup danger">
+        <i class="fa fa-exclamation-circle main-icon" aria-hidden="true"></i>
+        <p>{{$message}}</p>
+        <i class="fa fa-times close" aria-hidden="true"></i>
+    </div>
+@endif
 <script src="/js/executive/assigned_task.js"></script>
 @include('includes.footer')
 @include('includes.htmlend')
